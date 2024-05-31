@@ -1,12 +1,17 @@
 <script>
 
 import {store} from '../store'
+import ProjectCard from './subComponents/ProjectCard.vue'
 
 export default{
+
+  components: { 
+    ProjectCard, 
+  },
+
   data() {
     return {
       store,
-
     }
   },
 }
@@ -14,10 +19,22 @@ export default{
 </script>
 
 <template>
-  <div>
-    <ul>
-      <li v-for="project in store.projects" :key="project.id">{{ project.title }}</li>
-    </ul>
+  <div class="container">
+    <div class="row row-cols-3">
+      <div class="col"
+        v-for="project in store.projects" 
+        :key="project.id"
+        >
+
+        <ProjectCard 
+        :titleP="project.title"
+        
+        :descriptionP="project.description"
+        :githubP="project.github"
+        />
+      </div>
+    </div>
+    
   </div>
 </template>
 
