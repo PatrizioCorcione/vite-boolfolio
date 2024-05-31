@@ -1,47 +1,52 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+<script>
+
+import axios from 'axios';
+import {store} from './store.js';
+import Main from './components/Main.vue';
+
+
+export default {
+  components:{
+      // Header,
+      Main,
+      // Footer,
+      
+    },
+  data() {
+    return {
+      store,
+
+    }
+  },
+  methods: {
+    getApi(){
+      this.store.character=[];
+      axios.get(this.store.apiUrl)
+      .then(result =>{
+        this.store.projects = result.data;
+        console.log(this.store.projects)})
+        .catch(error => {
+      console.error('There was an error!', error.message);
+      })
+    }
+  },
+  mounted() {
+    this.getApi();
+  },
+}
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+  <div>
+    <!-- <Header/> -->
+    <Main/>
+    <!-- <Footer/> -->
+  </div>
 
-  <main>
-    <TheWelcome />
-  </main>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<style lang="scss" scoped>
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
