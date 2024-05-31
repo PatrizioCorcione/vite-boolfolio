@@ -21,10 +21,18 @@ export default {
   methods: {
     getApi(){
       this.store.character=[];
-      axios.get(this.store.apiUrl)
+      axios.get(this.store.apiUrl,{
+        params:{
+          page: store.page,
+          
+        }
+      })
+      
       .then(result =>{
-        this.store.projects = result.data;
-        console.log(this.store.projects)})
+        this.store.projects = result.data.data;
+        this.store.last_page = result.data.last_page;
+        console.log(this.store.last_page);
+        console.log(this.store.page)})
         .catch(error => {
       console.error('There was an error!', error.message);
       })
@@ -41,7 +49,7 @@ export default {
 
   <div>
     <!-- <Header/> -->
-    <Main/>
+    <Main @emitNext = 'getApi' @emitPrev='getApi'/>
     <!-- <Footer/> -->
   </div>
 

@@ -33,6 +33,19 @@ export default{
         :githubP="project.github"
         />
       </div>
+      <div>
+        <button
+        @click="store.page++,
+        $emit('emitNext')"
+        v-if="this.store.page != this.store.last_page"
+        
+        > avanti</button>
+        <button v-if="this.store.page > 1"
+        @click="store.page--,
+        $emit('emitPrev')"
+        
+        > indietro</button>
+      </div>
     </div>
     
   </div>
