@@ -3,13 +3,15 @@
 import axios from 'axios';
 import {store} from './store.js';
 import Main from './components/Main.vue';
+import Footer from './components/Footer.vue';
+import Header from './components/Header.vue';
 
 
 export default {
   components:{
-      // Header,
+      Header,
       Main,
-      // Footer,
+      Footer,
       
     },
   data() {
@@ -20,22 +22,15 @@ export default {
   },
   methods: {
     getApi(){
-      this.store.character=[];
-      axios.get(this.store.apiUrl,{
-        params:{
-          page: store.page,
-          
-        }
-      })
+      axios.get(this.store.apiUrl)
       
       .then(result =>{
         this.store.projects = result.data.data;
-        this.store.last_page = result.data.last_page;
-        console.log(this.store.last_page);
-        console.log(this.store.page)})
-        .catch(error => {
-      console.error('There was an error!', error.message);
+        this.store.links = result.data.links;
+        
       })
+        
+      
     }
   },
   mounted() {
@@ -46,13 +41,13 @@ export default {
 </script>
 
 <template>
-
+<body>
   <div>
-    <!-- <Header/> -->
-    <Main @emitNext = 'getApi' @emitPrev='getApi'/>
-    <!-- <Footer/> -->
+    <Header/> 
+    <Main @emitNext='getApi()'/>
+    <Footer/> 
   </div>
-
+</body>
 </template>
 
 <style lang="scss" scoped>
