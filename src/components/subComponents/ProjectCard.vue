@@ -1,12 +1,11 @@
 <script>
 export default {
-  
-  props:{
+  props: {
     titleP: String,
-    typeP:String,
+    typeP: String,
     descriptionP: String,
     githubP: String,
-    technoP: Object,
+    technoP: Array, // Cambiato da Object a Array
   },
   mounted() {
     console.log('Received props:', this.technoP);
@@ -15,35 +14,54 @@ export default {
 </script>
 
 <template>
-  <div class="card my-3">
-    <div class="card-body">
-      <div>
-        <h5 class="card-title">{{titleP}}</h5>
-      </div>
-      <div>
-        <h6 class="badge text-bg-dark d-block">{{typeP}}</h6>
-        <span class="badge text-bg-danger"  v-if="technoP.length === 0">Nessuna tecnologia usata</span>
-        <span v-for="(techno, index) in technoP" 
-        :key="index"
-        class="badge me-1 text-bg-primary"
-         >
-         {{ techno.technologies}}</span>
-         <div class="my-2 text-end">
-          <a :href="githubP" class="card-link text-decoration-none btn btn-outline-dark"><i class="fa-brands fa-github me-2"></i>GitHub</a>
-         </div>
-      </div>
-    </div>
-  </div>
+  <tr>
+    <td>
+      <a :href="githubP" class="text-decoration-none link-wrapper">
+        <span class="list-title">{{ titleP }}</span>
+        <span class="list-type">{{ typeP }}</span>
+        <div class="mt-5">
+          <div>
+            <span class="badge text-bg-danger" v-if="technoP.length === 0">Nessuna tecnologia usata</span>
+            <span v-for="(techno, index) in technoP" :key="index" class="badge me-1 text-bg-primary">
+              {{ techno.technologies }}
+            </span>
+          </div>
+        </div>
+      </a>
+    </td>
+  </tr>
 </template>
 
 <style lang="scss" scoped>
-.card{
-  height: 200px;
-  .card-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+td {
+  text-decoration: none;
+  background-color: #080808;
+  color: white;
+  border-bottom: 2px solid #1f1f1f;
+  padding: 10px 25px;
+  transition: padding 0.3s;
+  &:hover {
+    background-color: rgba(174, 174, 174, 0.156);
+    padding: 10px 25px 10px 30px;
+  }
+  .link-wrapper {
+    display: block; /* Make the link cover the entire td */
+    height: 100%; /* Cover the full height */
+    color: inherit; /* Inherit text color */
+  }
+  .list-title {
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+  }
+  .list-type {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    border: 2px solid #1f1f1f;
+    float: inline-end;
+    padding: 5px 10px;
+    border-radius: 10px;
   }
 }
-
 </style>

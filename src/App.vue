@@ -20,22 +20,7 @@ export default {
 
     }
   },
-  methods: {
-    getApi(){
-      axios.get(this.store.apiUrl)
-      
-      .then(result =>{
-        this.store.projects = result.data.data;
-        this.store.links = result.data.links;
-        
-      })
-        
-      
-    }
-  },
-  mounted() {
-    this.getApi();
-  },
+  
 }
 
 </script>
@@ -44,12 +29,16 @@ export default {
 <body>
   <div>
     <Header/> 
-    <Main @emitNext='getApi()'/>
+    <router-view></router-view>
     <Footer/> 
   </div>
 </body>
 </template>
 
 <style lang="scss" scoped>
+body{
+
+  font-family: "Roboto Mono", monospace;
+}
 
 </style>
