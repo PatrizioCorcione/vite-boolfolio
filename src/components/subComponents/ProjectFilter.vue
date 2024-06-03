@@ -15,7 +15,11 @@ export default{
 
 <template>
   <div class="filter">
-    <h2>Tipi</h2>
+    <div class="reset">
+      <h2 class="me-2">FILTER</h2>
+      <p class=" text-primary">RESET</p>
+    </div>
+    <p class="text-tt text-primary">Tipi</p>
     <div class="form-check type-check">
       <div
       v-for="(type) in this.store.types" :key="type.id"
@@ -26,7 +30,7 @@ export default{
         </label>
       </div>
     </div>
-    <h2 class="mt-3">Tecnologie</h2>
+    <p class="text-tt mt-3 text-primary">Tecnologie</p>
     <div class="form-check techno-check">
       <div 
       v-for="(techno) in this.store.technologies" :key="techno.id"
@@ -44,8 +48,16 @@ export default{
 
 <style lang="scss" scoped>
 .filter{
-  font-size: .8rem;
-  margin-top: 96px;
+  font-size: .9rem;
+  margin-top: 80px;
+  .reset{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+  }
+  .text-tt{
+    font-size: 1.5rem;
+  }
   h2{
     color: white;
   }

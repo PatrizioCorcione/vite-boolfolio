@@ -59,7 +59,7 @@ export default {
   border-radius: 4px;
 }
 h2 {
-  font-size: 5rem;
+  font-size: 4rem;
   color: white;
   font-weight: bold;
 }
