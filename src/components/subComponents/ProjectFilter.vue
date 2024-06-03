@@ -20,7 +20,7 @@ export default{
       <div
       v-for="(type) in this.store.types" :key="type.id"
       >
-        <input class="form-check-input" type="radio"  id="flexRadioDefault1">
+        <input class="form-check-input" name="type" type="radio"  id="flexRadioDefault1">
         <label class="form-check-label" for="flexRadioDefault1">
           {{ type.type }}
         </label>
@@ -44,6 +44,7 @@ export default{
 
 <style lang="scss" scoped>
 .filter{
+  font-size: .8rem;
   margin-top: 96px;
   h2{
     color: white;
@@ -54,6 +55,12 @@ export default{
     flex-direction: column;
     height: 81px;
     flex-wrap: wrap;
+    input{
+      
+      &:hover{
+        cursor: pointer;
+      }
+    }
   }
   .type-check{
     color: gray;

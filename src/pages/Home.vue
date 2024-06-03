@@ -59,35 +59,36 @@ export default {
 
 <template>
 
-<body>
-
-  <div class="container-xxl">
-    
-    <div class="row home">
-
+  <div class="container-xl">
+    <div class="row ">
       <div class="col-9">
-  
         <ProjectList @search="getSearch()"/>
       </div>
       <div class="col-3">
         <ProjectFilter/>
       </div>
     </div>
-
-
   </div>
-
-</body>
 
 </template>
 
 <style lang="scss" scoped>
-body{
-  background-color: #080808;
-  font-family: "Roboto Mono", monospace;
-  .home{
-    height: 100vh;
-  }
+
+.container-xl {
+  position: relative;
+  min-height: 100vh; /* Occupare almeno l'intera altezza della finestra */
+  padding-bottom: 100px;
+  padding-top: 20px; /* Spazio superiore */
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px; /* Altezza del footer */
+  background-color: #080808;
+  color: white;
+  text-align: center;
+  line-height: 100px; /* Allinea il testo verticalmente */
+}
 </style>

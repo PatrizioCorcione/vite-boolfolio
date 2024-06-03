@@ -27,20 +27,21 @@ export default {
 
 <template>
 <body>
-  <div>
-    <Header/> 
+  <Header/> 
+  <main>
+
     <router-view></router-view>
-    <Footer/> 
-  </div>
+    
+  </main>
+  <Footer/> 
 </body>
 </template>
 
 <style lang="scss" scoped>
-body{
-  margin: 0;
-  padding: 0;
-
+main{
+  
   font-family: "Roboto Mono", monospace;
+  background-color: #080808;
 }
 
 </style>
