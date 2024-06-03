@@ -8,7 +8,7 @@ export default {
     technoP: Array, // Cambiato da Object a Array
   },
   mounted() {
-    console.log('Received props:', this.technoP);
+    
   }
 }
 </script>

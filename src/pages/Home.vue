@@ -2,13 +2,15 @@
 
 import axios from 'axios';
 import {store} from '../store';
-import ProjectList from '../components/subComponents/ProjectList.vue'
+import ProjectList from '../components/subComponents/ProjectList.vue';
+import ProjectFilter from '../components/subComponents/ProjectFilter.vue';
 
 
 
 export default {
   components:{
       ProjectList,
+      ProjectFilter,
     },
   data() {
     return {
@@ -16,17 +18,34 @@ export default {
     }
   },
   methods: {
-    getApi(){
-      axios.get(this.store.apiUrl)
+    getApi(type = 'project'){
+      axios.get(this.store.apiUrl + type )
       
       .then(result =>{
-        this.store.projects = result.data;
-        // this.store.links = result.data.links;
+
+
+        switch (type) {
+          case 'technology':
+          this.store.technologies = result.data;
+
+            break;
+          case 'type':
+          this.store.types = result.data;
+
+            break;
+        
+          default:
+          this.store.projects = result.data;
+
+            break;
+        }
       })
     }
   },
   mounted() {
     this.getApi();
+    this.getApi('type');
+    this.getApi('technology');
   },
 }
 
@@ -36,9 +55,15 @@ export default {
 
 <body>
 
-  <div class="main py-5">
+  <div class="main py-5 row">
 
-    <ProjectList/>
+    <div class="col-9">
+
+      <ProjectList/>
+    </div>
+    <div class="col-3">
+      <ProjectFilter/>
+    </div>
 
   </div>
 
