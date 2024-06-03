@@ -19,7 +19,7 @@ export default {
       <a :href="githubP" class="text-decoration-none link-wrapper">
         <span class="list-title">{{ titleP }}</span>
         <span class="list-type">{{ typeP }}</span>
-        <div class="mt-5">
+        <div class="mt-3">
           <div>
             <span class="badge text-bg-danger" v-if="technoP.length === 0">Nessuna tecnologia usata</span>
             <span v-for="(techno, index) in technoP" :key="index" class="badge me-1 text-bg-primary">

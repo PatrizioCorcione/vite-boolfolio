@@ -40,6 +40,12 @@ export default {
             break;
         }
       })
+    },
+    getSearch(){
+      axios.get(this.store.apiUrl + 'project/search/'+ this.store.toSearch)
+      .then(result =>{
+        this.store.projects = result.data
+      })
     }
   },
   mounted() {
@@ -55,15 +61,19 @@ export default {
 
 <body>
 
-  <div class="main py-5 row">
+  <div class="container-xxl">
+    
+    <div class="row home">
 
-    <div class="col-9">
+      <div class="col-9">
+  
+        <ProjectList @search="getSearch()"/>
+      </div>
+      <div class="col-3">
+        <ProjectFilter/>
+      </div>
+    </div>
 
-      <ProjectList/>
-    </div>
-    <div class="col-3">
-      <ProjectFilter/>
-    </div>
 
   </div>
 
@@ -73,10 +83,11 @@ export default {
 
 <style lang="scss" scoped>
 body{
-  
   background-color: #080808;
-
   font-family: "Roboto Mono", monospace;
+  .home{
+    height: 100vh;
+  }
 }
 
 </style>

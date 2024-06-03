@@ -37,6 +37,8 @@ export default {
 
 <style lang="scss" scoped>
 body{
+  margin: 0;
+  padding: 0;
 
   font-family: "Roboto Mono", monospace;
 }
