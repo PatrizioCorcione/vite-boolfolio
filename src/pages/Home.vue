@@ -77,7 +77,6 @@ export default {
 .container-xl {
   position: relative;
   min-height: 100vh; /* Occupare almeno l'intera altezza della finestra */
-  padding-bottom: 100px;
   padding-top: 20px; /* Spazio superiore */
 }
 
