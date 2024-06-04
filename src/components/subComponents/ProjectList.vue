@@ -36,9 +36,9 @@ export default {
         class="w-100" type="search" placeholder="Search" aria-label="Search" />
       </form>
       <div class="project-list my-5">
-        <div v-for="project in store.projects" :key="project.id">
-          <table class="table m-0">
-            <tbody>
+        <table class="table m-0">
+          <tbody>
+            <tr v-for="project in store.projects" :key="project.id">
               <ProjectCard
                 :titleP="project.title"
                 :typeP="project.type.type"
@@ -46,9 +46,9 @@ export default {
                 :githubP="project.github"
                 :projectSlug="project.slug"
               />
-            </tbody>
-          </table>
-        </div>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

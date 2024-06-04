@@ -15,22 +15,20 @@ export default {
 </script>
 
 <template>
-  <tr>
-    <td>
-      <router-link :to="{name : 'show' ,params : {'slug' : projectSlug}}">
+  
+  <td>
+  <router-link class="text-decoration-none text-white w-100 d-lg-inline-block" :to="{name : 'show' ,params : {'slug' : projectSlug}}">
         <span class="list-title">{{ titleP }}</span>
         <span class="list-type">{{ typeP }}</span>
         <div class="mt-3">
-          <div>
-            <span class="badge text-bg-danger" v-if="technoP.length === 0">Nessuna tecnologia usata</span>
+          <span class="badge text-bg-danger" v-if="technoP.length === 0">Nessuna tecnologia usata</span>
             <span v-for="(techno, index) in technoP" :key="index" class="badge me-1 text-bg-primary">
               {{ techno.technologies }}
             </span>
-          </div>
         </div>
       </router-link>
     </td>
-  </tr>
+  
 </template>
 
 <style lang="scss" scoped>
