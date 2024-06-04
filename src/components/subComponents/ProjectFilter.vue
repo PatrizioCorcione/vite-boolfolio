@@ -1,20 +1,28 @@
 <script>
 
-import {store} from '../../store'
+import {store} from '../../store';
+import axios from 'axios';
 
 export default {
   data() {
     return {
       store,
-      selectedType: null,
-      selectedTechno: null
+      selectedType: 0,
+      selectedTechno: 0
     }
   },
   methods: {
     resetFilters() {
-      this.selectedType = null;
-      this.selectedTechno = null;
-    }
+      this.selectedType = 0;
+      this.selectedTechno = 0;
+    },
+
+    getFilterType(){
+        axios.get(this.store.apiUrl + 'project/typeFilter/'+ this.selectedType)
+        .then(result =>{
+          this.store.projects = result.data
+        })
+      },
   }
 }
 
@@ -36,7 +44,8 @@ export default {
           type="radio"  
           :id="'type-' + type.id"
           :value="type.id"
-          v-model="selectedType"
+          @click="selectedType = type.id , getFilterType()"
+          
         >
         <label class="form-check-label" :for="'type-' + type.id">
           {{ type.type }}

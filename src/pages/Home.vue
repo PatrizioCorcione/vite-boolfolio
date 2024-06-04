@@ -4,6 +4,7 @@ import axios from 'axios';
 import {store} from '../store';
 import ProjectList from '../components/subComponents/ProjectList.vue';
 import ProjectFilter from '../components/subComponents/ProjectFilter.vue';
+import Loader from '@/components/subComponents/Loader.vue';
 
 
 
@@ -11,10 +12,12 @@ export default {
   components:{
       ProjectList,
       ProjectFilter,
+    Loader,
     },
   data() {
     return {
       store,
+      itsReady:false
     }
   },
   methods: {
@@ -22,8 +25,7 @@ export default {
       axios.get(this.store.apiUrl + type )
       
       .then(result =>{
-
-
+        this.itsReady = true
         switch (type) {
           case 'technology':
           this.store.technologies = result.data;
@@ -46,7 +48,8 @@ export default {
       .then(result =>{
         this.store.projects = result.data
       })
-    }
+    },
+    
   },
   mounted() {
     this.getApi();
@@ -60,7 +63,8 @@ export default {
 <template>
 
   <div class="container-xl">
-    <div class="row ">
+    <Loader class="text-center" v-if="!this.itsReady" />
+    <div v-else class="row ">
       <div class="col-9">
         <ProjectList @search="getSearch()"/>
       </div>

@@ -44,9 +44,9 @@ td {
     padding: 10px 25px 10px 30px;
   }
   .link-wrapper {
-    display: block; /* Make the link cover the entire td */
-    height: 100%; /* Cover the full height */
-    color: inherit; /* Inherit text color */
+    display: block; 
+    height: 100%;
+    color: inherit; 
   }
   .list-title {
     font-weight: bold;
@@ -57,7 +57,7 @@ td {
   .list-type {
     font-size: 0.7rem;
     text-transform: uppercase;
-    border: 2px solid #1f1f1f;
+    border: 2px solid #0d6efd;
     float: inline-end;
     padding: 5px 10px;
     border-radius: 10px;
