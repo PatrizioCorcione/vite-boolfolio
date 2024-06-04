@@ -7,22 +7,34 @@ export default {
   data() {
     return {
       store,
-      selectedType: 0,
-      selectedTechno: 0
+      selectedType: null,
+      selectedTechno: null
     }
   },
   methods: {
     resetFilters() {
-      this.selectedType = 0;
-      this.selectedTechno = 0;
+      this.selectedType = null;
+      this.selectedTechno = null;
+      console.log(this.store.projects);
     },
 
-    getFilterType(){
-        axios.get(this.store.apiUrl + 'project/typeFilter/'+ this.selectedType)
-        .then(result =>{
-          this.store.projects = result.data
-        })
-      },
+    getFilter(){
+      axios.get(this.store.apiUrl + 'project/filter',{
+        params:{
+          type : this.selectedType,
+          technology : this.selectedTechno
+        }
+      })
+      .then(result =>{
+        this.store.projects = result.data
+      })
+    },
+    // getFilterTechno(){
+    //   axios.get(this.store.apiUrl + 'project/technoFilter/'+ this.selectedTechno)
+    //   .then(result =>{
+    //     this.store.projects = result.data
+    //   })
+    // },
   }
 }
 
@@ -31,7 +43,7 @@ export default {
 
 <template>
   <div class="filter">
-    <div class="reset-div" @click="resetFilters">
+    <div class="reset-div" @click="resetFilters(),getFilter()">
       <h2 class="me-2">FILTER</h2>
       <p class="text-primary reset">RESET</p>
     </div>
@@ -44,7 +56,8 @@ export default {
           type="radio"  
           :id="'type-' + type.id"
           :value="type.id"
-          @click="selectedType = type.id , getFilterType()"
+          v-model="selectedType"
+          @click="selectedType = type.id , getFilter()"
           
         >
         <label class="form-check-label" :for="'type-' + type.id">
@@ -56,11 +69,13 @@ export default {
     <div class="form-check techno-check">
       <div v-for="(techno) in store.technologies" :key="techno.id">
         <input 
-          class="form-check-input" 
+          class="form-check-input"
+          name="techno" 
           type="radio"  
           :id="'techno-' + techno.id"
           :value="techno.id"
           v-model="selectedTechno"
+          @click="selectedTechno = techno.id , getFilter()"
         >
         <label class="form-check-label" :for="'techno-' + techno.id">
           {{ techno.technologies }}

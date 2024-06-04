@@ -58,13 +58,13 @@ export default {
             </div>
           </div>
           <div  class="col-2 list-div list-type">
-            <p v-if="project.technologies == []">Nessuna tecnologia usata</p>
             <p class="list-top">{{ project.type?.type }}</p>
+            <div v-if="project.technologies.length == 0">Nessuna tecnologia</div>
             <div 
             v-for="techno in project.technologies" 
             :key="techno.id"
             >
-              {{ techno.technologies }}
+            {{ techno.technologies }}
             </div>
           </div>
         </div>
