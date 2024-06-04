@@ -44,6 +44,7 @@ export default {
                 :typeP="project.type.type"
                 :technoP="project.technologies"
                 :githubP="project.github"
+                :projectSlug="project.slug"
               />
             </tbody>
           </table>

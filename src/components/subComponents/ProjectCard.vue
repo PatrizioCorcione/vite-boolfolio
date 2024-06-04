@@ -5,7 +5,8 @@ export default {
     typeP: String,
     descriptionP: String,
     githubP: String,
-    technoP: Array, // Cambiato da Object a Array
+    technoP: Array,
+    projectSlug: String
   },
   mounted() {
     
@@ -16,7 +17,7 @@ export default {
 <template>
   <tr>
     <td>
-      <a :href="githubP" class="text-decoration-none link-wrapper">
+      <router-link :to="{name : 'show' ,params : {'slug' : projectSlug}}">
         <span class="list-title">{{ titleP }}</span>
         <span class="list-type">{{ typeP }}</span>
         <div class="mt-3">
@@ -27,7 +28,7 @@ export default {
             </span>
           </div>
         </div>
-      </a>
+      </router-link>
     </td>
   </tr>
 </template>

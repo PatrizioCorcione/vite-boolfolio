@@ -69,15 +69,15 @@ export default {
       </div>
     </div>
   </div>
-
+  
 </template>
 
 <style lang="scss" scoped>
 
 .container-xl {
   position: relative;
-  min-height: 100vh; /* Occupare almeno l'intera altezza della finestra */
-  padding-top: 20px; /* Spazio superiore */
+  min-height: 100vh; 
+  padding-top: 20px; 
 }
 
 footer {
@@ -88,6 +88,6 @@ footer {
   background-color: #080808;
   color: white;
   text-align: center;
-  line-height: 100px; /* Allinea il testo verticalmente */
+  line-height: 100px; 
 }
 </style>
