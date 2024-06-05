@@ -5,6 +5,7 @@ import {store} from '../store';
 import ProjectList from '../components/subComponents/ProjectList.vue';
 import ProjectFilter from '../components/subComponents/ProjectFilter.vue';
 import Loader from '@/components/subComponents/Loader.vue';
+import Hero from '../components/subComponents/Hero.vue';
 
 
 
@@ -12,7 +13,8 @@ export default {
   components:{
       ProjectList,
       ProjectFilter,
-    Loader,
+      Loader,
+      Hero,
     },
   data() {
     return {
@@ -63,8 +65,9 @@ export default {
 <template>
 
   <div class="container-xl">
-    <Loader class="text-center" v-if="!this.itsReady" />
+    <Loader v-if="!this.itsReady" />
     <div v-else class="row ">
+      <Hero/>
       <div class="col-9">
         <ProjectList @search="getSearch()"/>
       </div>

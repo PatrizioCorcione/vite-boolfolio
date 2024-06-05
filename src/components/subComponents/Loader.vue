@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="py-5">
+  <div class="py-5 h-100 d-flex align-items-center justify-content-center">
     <span class="loader"></span>
   </div>
 </template>
