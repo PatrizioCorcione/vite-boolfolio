@@ -51,7 +51,7 @@ const technologyList = [
   ['Boostrap', '../../../public/icons/boot.png'],
   ['Vue', '../../../public/icons/vue.png'],
   ['Tailwind', '../../../public/icons/tailwind.png'],
-  ['MySQL', '../../../public/icons/mysql.png'],
+  ['Mysql', '../../../public/icons/mysql.png'],
   ['React', '../../../public/icons/react.png'],
   ['Laravel', '../../../public/icons/laravel.png'],
   ['PHP', '../../../public/icons/php.png'],

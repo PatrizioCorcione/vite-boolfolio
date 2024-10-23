@@ -11,7 +11,6 @@ export default {
   data() {
     return {
       store,
-      searchQuery: '',
       isTableVisible: false, // Per controllare la visibilità della tabella
       isFilterVisible: false, // Per controllare la visibilità dei filtri
     };
@@ -19,12 +18,12 @@ export default {
   computed: {
     // Computed property per filtrare i progetti in base a searchQuery
     filteredProjects() {
-      if (!this.searchQuery) {
+      if (!this.store.searchQuery) {
         return this.store.projects;
       }
       // Filtra i progetti in base alla searchQuery
       return this.store.projects.filter(project => {
-        return project.title.toLowerCase().includes(this.searchQuery.toLowerCase());
+        return project.title.toLowerCase().includes(this.store.searchQuery.toLowerCase());
       });
     },
   },
@@ -80,7 +79,7 @@ export default {
           >
             <i class="fa-solid fa-magnifying-glass"></i>
             <input
-              v-model="searchQuery"
+              v-model="this.store.searchQuery"
               class="w-100"
               type="search"
               placeholder="Search"

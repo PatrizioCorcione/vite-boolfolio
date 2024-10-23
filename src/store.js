@@ -6,4 +6,5 @@ export const store = reactive({
   types:[],
   typeValue:'',
   githubShow:'',
+  searchQuery: '',
 });

@@ -14,26 +14,27 @@ export default {
     resetFilters() {
       this.selectedType = null;
       this.selectedTechno = null;
+      this.store.searchQuery = '';
     },
     getFilter() {
-  const technology = this.selectedTechno ? this.selectedTechno : 'none'; // Usa 'none' se non selezionato
-  const type = this.selectedType ? this.selectedType : 'none'; // Usa 'none' se non selezionato
+      const technology = this.selectedTechno ? this.selectedTechno : 'none'; // Usa 'none' se non selezionato
+      const type = this.selectedType ? this.selectedType : 'none'; // Usa 'none' se non selezionato
 
-  // Stampa i valori per debugging
-  console.log('Technology:', technology, 'Type:', type);
+      // Stampa i valori per debugging
+      console.log('Technology:', technology, 'Type:', type);
 
-  // Costruisci l'URL senza doppio slash
-  const url = `${this.store.apiUrl}projects/filter/${technology}/${type}`;
+      // Costruisci l'URL senza doppio slash
+      const url = `${this.store.apiUrl}projects/filter/${technology}/${type}`;
 
-  // Effettua la chiamata API per il filtro
-  axios.get(url)
-    .then(result => {
-      this.store.projects = result.data.projects; // Aggiorna con result.data.projects
-    })
-    .catch(error => {
-      console.error('Errore durante il filtraggio:', error);
-    });
-}
+      // Effettua la chiamata API per il filtro
+      axios.get(url)
+        .then(result => {
+            this.store.projects = result.data.projects; // Aggiorna con result.data.projects
+        })
+        .catch(error => {
+            console.error('Errore durante il filtraggio:', error);
+        });
+    }
 
 
   }
