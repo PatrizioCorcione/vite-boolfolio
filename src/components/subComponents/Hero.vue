@@ -1,114 +1,114 @@
-
-<script>
-  // // Import Swiper Vue.js components
-  // import { Swiper, SwiperSlide } from 'swiper/vue';
-
-  // // Import Swiper styles
-  // import 'swiper/css';
-
-  // import 'swiper/css/pagination';
-  // import 'swiper/css/navigation';
-  // // import required modules
-  // import { Pagination, Navigation } from 'swiper/modules';
-
-  // export default {
-  //   components: {
-  //     Swiper,
-  //     SwiperSlide,
-  //   },
-  //   setup() {
-  //     return {
-  //       modules: [Pagination, Navigation],
-  //     };
-  //   },
-  // };
-</script>
 <template>
-  <swiper
-    ref="{swiperRef}"
-    :slidesPerView="3"
-    :centeredSlides="true"
-    :spaceBetween="30"
-    :pagination="{
-      type: 'fraction',
-    }"
-    :navigation="true"
-    :modules="modules"
-    class="mySwiper"
-  >
-    <swiper-slide>Slide 1</swiper-slide>
-    <swiper-slide>Slide 2</swiper-slide>
-    <swiper-slide>Slide 3</swiper-slide>
-    <swiper-slide>Slide 4</swiper-slide>
-  </swiper>
-
-  <p class="append-buttons"></p>
+  <div class="bg" id="hero">
+    <div class="container-custom py-5">
+      <div class="row justify-content-center">
+        <div 
+          class="overflow-hidden col-4 d-flex"
+          :class="{ 'fade-in-image': showImage }"
+        >
+          <img 
+            class="img-fluid rounded-circle" 
+            src="../../../public/img/IMG_0086(1).jpg" 
+            alt="Hero Image"
+            :style="{ opacity: showImage ? 1 : 0, transform: showImage ? 'scale(1)' : 'scale(0.5)' }"
+          >
+        </div>
+        <div 
+          class="col-8 d-flex align-items-center"
+          :class="{ 'fade-in-text': showText }"
+        >
+          <p class="slogan">
+            <span v-for="(char, index) in displayedText" :key="index" class="slogan-letter">{{ char }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
+
+
+<script>
+export default {
+  data() {
+    return {
+      showImage: false,
+      showText: false,
+      fullText: "Codice non solo per risolvere problemi, ma per creare un futuro migliore. Perché il vero debugging è nel trasformare l'idea in realtà.",
+      displayedText: '',
+      currentIndex: 0,
+    };
+  },
+  mounted() {
+    // Utilizza un timer per far apparire l'immagine al caricamento
+    setTimeout(() => {
+      this.showImage = true; // Immagine appare prima
+    }, 100); // 100 ms di ritardo prima di far apparire l'immagine
+
+    // Utilizza un timer per far apparire il testo dopo l'immagine
+    setTimeout(() => {
+      this.showText = true; // Testo appare dopo
+      this.typeWriter(); // Inizia l'animazione di scrittura
+    }, 500); // 500 ms di ritardo prima di far apparire il testo
+  },
+  methods: {
+    typeWriter() {
+      const interval = setInterval(() => {
+        if (this.currentIndex < this.fullText.length) {
+          this.displayedText += this.fullText.charAt(this.currentIndex);
+          this.currentIndex++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 30); // Modifica questo valore per cambiare la velocità di scrittura
+    }
+  }
+}
+</script>
+
+
 <style lang="scss" scoped>
+.bg {
+  padding: 2rem;
 
-// #app {
-//   height: 100%;
-// }
-// html,
-// body {
-//   position: relative;
-//   height: 100%;
-// }
+  .overflow-hidden {
+    padding: 20px;
+  }
 
-// body {
-//   background: #eee;
-//   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-//   font-size: 14px;
-//   color: #000;
-//   margin: 0;
-//   padding: 0;
-// }
+  .img-fluid.rounded-circle {
+    border: 3px solid royalblue;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(65, 105, 225, 0.5);
+    transition: transform 0.8s ease, opacity 0.5s ease, box-shadow 0.5s ease;
+    transform: scale(0.5) rotate(-10deg);
+    opacity: 0;
+    filter: brightness(1.1) contrast(1.1);
+  }
 
-// .swiper {
-//   width: 100%;
-//   height: 100%;
-// }
+  .fade-in-image {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
 
-// .swiper-slide {
-//   text-align: center;
-//   font-size: 18px;
-//   background: #fff;
+  .col-8 {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    transform: translateX(-20px);
+  }
 
-//   /* Center slide text vertically */
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
+  .fade-in-text {
+    opacity: 1;
+    transform: translateX(0);
+  }
 
-// .swiper-slide img {
-//   display: block;
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-// }
-
-// .swiper {
-//   width: 100%;
-//   height: 300px;
-//   margin: 20px auto;
-// }
-// .append-buttons {
-//   text-align: center;
-//   margin-top: 20px;
-// }
-
-// .append-buttons button {
-//   display: inline-block;
-//   cursor: pointer;
-//   border: 1px solid #007aff;
-//   color: #007aff;
-//   text-decoration: none;
-//   padding: 4px 10px;
-//   border-radius: 4px;
-//   margin: 0 10px;
-//   font-size: 13px;
-// }
-
-
+  .slogan {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #c2c2ce;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    line-height: 1.4;
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+}
 </style>
+

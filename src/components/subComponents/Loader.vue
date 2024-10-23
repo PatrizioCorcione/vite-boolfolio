@@ -3,13 +3,14 @@
 </script>
 
 <template>
-  <div class="py-5 h-100 d-flex align-items-center justify-content-center">
+  <div class=" d-flex align-items-center justify-content-center">
     <span class="loader"></span>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .loader {
+  margin: 200px 0px;
   width: 248px;
   height: 248px;
   display: inline-block;
