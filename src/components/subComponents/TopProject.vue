@@ -1,5 +1,6 @@
 <script>
 import { store } from '../../store';
+import axios from 'axios'; // Importa axios
 
 const technologyList = [
   ['HTML', '/icons/html.png'],
@@ -21,32 +22,38 @@ export default {
       fixedTitles: ['Deliveboo', 'Boolflix', 'Campominato', 'Vetrina Damon', 'Discord', 'Rick & Morty'],
     };
   },
-  mounted() {
-    this.localProjects = [...store.projects].map(project => ({ ...project, isVisible: false }));
+  async mounted() { // Rendi mounted asincrono
+    try {
+      // Effettua la chiamata API
+      const response = await axios.get('https://api.tuo-endpoint.com/projects'); // Cambia l'URL con il tuo endpoint
+      this.localProjects = response.data.map(project => ({ ...project, isVisible: false }));
 
-    this.$nextTick(() => {
-      const options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1,
-      };
+      this.$nextTick(() => {
+        const options = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.1,
+        };
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const index = Array.from(this.$refs.projectCards).indexOf(entry.target);
-            if (index !== -1) {
-              this.localProjects[index].isVisible = true;
-              observer.unobserve(entry.target);
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const index = Array.from(this.$refs.projectCards).indexOf(entry.target);
+              if (index !== -1) {
+                this.localProjects[index].isVisible = true;
+                observer.unobserve(entry.target);
+              }
             }
-          }
-        });
-      }, options);
+          });
+        }, options);
 
-      if (this.$refs.projectCards) {
-        this.$refs.projectCards.forEach(card => observer.observe(card));
-      }
-    });
+        if (this.$refs.projectCards) {
+          this.$refs.projectCards.forEach(card => observer.observe(card));
+        }
+      });
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+    }
   },
   computed: {
     filteredProjects() {
@@ -67,6 +74,7 @@ export default {
   }
 };
 </script>
+
 
 <template>
   <div class="container-custom my-5" id="beast-projects">
