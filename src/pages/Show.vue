@@ -29,7 +29,7 @@
           </div>
           <div :class="['col-6', index % 2 === 0 ? 'order-2' : 'order-1']" class="px-5">
             <div class="video-description">
-              <p>{{ descriptions[index] || "Nessuna descrizione disponibile." }}</p>
+              <p :class="[index % 2 === 0 ? 'text-start' : 'text-end']">{{ descriptions[index] || "Nessuna descrizione disponibile." }}</p>
             </div>
           </div>
         </div>
@@ -77,8 +77,7 @@ export default {
           this.videoSources = this.project.video ? this.project.video.split('<pc>') : [];
           this.descriptions = this.project.description ? this.project.description.split('<pc>') : [];
           this.store.githubShow = this.project.github;
-          this.itsReady = true;
-          this.scrollToTop(); // Scroll to the top after data is ready
+          this.itsReady = true; 
         })
         .catch((error) => {
           console.error('Error fetching project data:', error);
@@ -87,10 +86,10 @@ export default {
     getTechnologyPath(technologyName) {
       for (const [name, path] of technologyList) {
         if (name === technologyName) {
-          return path; // Return path if found
+          return path;
         }
       }
-      return null; // Return null if not found
+      return null; 
     },
   },
   mounted() {
@@ -103,8 +102,7 @@ export default {
 
 .show {
   
-  text-align: center;
-  color: #feffff; // Light color for better contrast
+  color: #feffff;
   background: linear-gradient(
     135deg,
     rgba(0, 0, 0, 0.9),
@@ -113,20 +111,19 @@ export default {
     rgba(65, 105, 225, 0.5)
   );
   .technologies {
-  display: inline-block; // Permette di visualizzare accanto al titolo
-  margin-left: 15px; // Spaziatura tra titolo e tecnologie
-  font-size: 1.2rem; // Increase font size for better visibility
-  font-weight: bold; // Make text bolder
-  color: #ffffff; // Change color for better contrast
-  text-shadow: 0px 0px 10px rgba(30, 144, 255, 1); // Stronger blue shadow for more glow
-  padding: 5px 10px; // Add some padding for a better appearance
-  border-radius: 5px; // Rounded corners for a modern look
-  background-color: rgba(0, 0, 0, 0.5); // Optional: Add a slight background for contrast
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0px 0px 10px rgba(30, 144, 255, 1); 
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.5); 
 
   .icon {
-  width: 30px; // Imposta la larghezza dell'icona
-  height: auto; // Mantiene le proporzioni
-  margin: 0px 4px; // Spaziatura tra le icone
+  width: 30px;
+  height: auto; 
+  margin: 0px 4px; 
   }
 }
 
@@ -147,7 +144,6 @@ export default {
 
   .video-description {
     margin-top: 10px;
-    text-align: center;
     color: #dcdcdc;
     font-size: 1.3rem;
     text-shadow: 0px 0px 8px rgba(65, 105, 225, 0.7); // A light blue shadow effect
