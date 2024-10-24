@@ -1,6 +1,5 @@
 <script>
 import { store } from '../../store';
-import axios from 'axios'; // Assicurati di avere axios installato
 
 const technologyList = [
   ['HTML', '/icons/html.png'],
@@ -22,8 +21,9 @@ export default {
       fixedTitles: ['Deliveboo', 'Boolflix', 'Campominato', 'Vetrina Damon', 'Discord', 'Rick & Morty'],
     };
   },
-  async mounted() {
-    await this.loadProjects();
+  mounted() {
+    this.localProjects = [...store.projects].map(project => ({ ...project, isVisible: false }));
+
     this.$nextTick(() => {
       const options = {
         root: null,
@@ -48,22 +48,14 @@ export default {
       }
     });
   },
-  methods: {
-    async loadProjects() {
-      try {
-        // Modifica questa parte in base al tuo endpoint API
-        const response = await axios.get('https://api.tuo-endpoint.com/projects');
-        // Supponiamo che l'API restituisca un array di progetti
-        this.localProjects = response.data.map(project => ({ ...project, isVisible: false }));
-      } catch (error) {
-        console.error('Errore nel caricamento dei progetti:', error);
-      }
-    },
+  computed: {
     filteredProjects() {
       return this.localProjects.filter((project) =>
         this.fixedTitles.includes(project.title)
       );
     },
+  },
+  methods: {
     getTechnologyPath(technologyName) {
       for (const [name, path] of technologyList) {
         if (name === technologyName) {
@@ -170,3 +162,5 @@ export default {
   }
 }
 </style>
+
+
