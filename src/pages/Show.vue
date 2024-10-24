@@ -52,9 +52,9 @@ export default {
       }
       return null; 
     },
-    onVideoLoaded(event) {
-      event.target.style.opacity = 1;
-    },
+  onVideoLoaded(event) {
+    event.target.style.opacity = 1; // Rendi il video visibile quando è pronto
+  },
   },
   mounted() {
     this.getApi(this.$route.params.slug);
@@ -86,14 +86,7 @@ export default {
         <!-- Sezione video -->
         <div class="video-section col-12 d-flex flex-wrap py-5" v-for="(video, index) in videoSources" :key="index">
           <div :class="['col-6', index % 2 === 0 ? 'order-1' : 'order-2']" v-if="video">
-            <video 
-              class="zoom-animation" 
-              width="100%" 
-              autoplay 
-              loop 
-              muted 
-              preload="metadata"
-              @canplaythrough="onVideoLoaded">
+            <video class="zoom-animation" width="100%" autoplay loop muted>
               <source :src="'/videos/' + video" type="video/mp4">
               Il tuo browser non supporta il tag video.
             </video>
@@ -108,27 +101,13 @@ export default {
       <div class="row video-row text-center" v-if="videoResp.length > 0">
         <h2 class="mb-5">Anteprima Responsive</h2>
         <div class="col-6 video-container">
-          <video
-            class="video-section zoom-animation i-phone"
-            autoplay
-            loop
-            preload="metadata"
-            @canplaythrough="onVideoLoaded"
-            width="100%"
-            muted>
-            <source :src="'/videos/' + videoResp[0]" type="video/mp4">
+          <video class="video-section zoom-animation i-phone" autoplay loop muted>
+            <source :src="'/videos/' + videoResp[1]" type="video/mp4">
             Il tuo browser non supporta il tag video.
           </video>
         </div>
         <div class="col-6 video-container">
-          <video
-            class="video-section zoom-animation i-phone" 
-            autoplay 
-            loop
-            preload="metadata"
-            @canplaythrough="onVideoLoaded"
-            width="100%"
-            muted>
+          <video class="video-section zoom-animation i-phone" autoplay loop muted>
             <source :src="'/videos/' + videoResp[1]" type="video/mp4">
             Il tuo browser non supporta il tag video.
           </video>
