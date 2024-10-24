@@ -105,12 +105,8 @@ export default {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
     transform: translateY(50px);
-    opacity: 0;
 
-    &.zoom-in {
-      transform: translateY(0);
-      opacity: 1;
-    }
+    
 
     &:hover {
       transform: scale(1.05);
