@@ -80,7 +80,7 @@ export default {
     <div class="row">
       <div v-for="project in filteredProjects" :key="project.id" class="col-md-4 mb-4" ref="projectCards">
         <router-link :to="{ name: 'show', params: { slug: project.slug } }" class="card project-card h-100 text-decoration-none" :class="{ 'zoom-in': project.isVisible }">
-          <img :src="'../../../public/img/' + project.img" class="card-img-top" alt="...">
+          <img :src="'/img/' + project.img" class="card-img-top" alt="...">
 
           <div class="card-body text-white">
             <h3 class="card-title">{{ project.title }}</h3>
