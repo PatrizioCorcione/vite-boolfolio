@@ -1,3 +1,64 @@
+<script>
+import axios from 'axios';
+import { store } from '../store';
+import Loader from '../components/subComponents/Loader.vue';
+
+const technologyList = [
+  ['HTML', '../../../public/icons/html.png'],
+  ['CSS', '../../../public/icons/css.png'],
+  ['Javascript', '../../../public/icons/js.png'],
+  ['Boostrap', '../../../public/icons/boot.png'],
+  ['Vue', '../../../public/icons/vue.png'],
+  ['Tailwind', '../../../public/icons/tailwind.png'],
+  ['Mysql', '../../../public/icons/mysql.png'],
+  ['React', '../../../public/icons/react.png'],
+  ['Laravel', '../../../public/icons/laravel.png'],
+  ['PHP', '../../../public/icons/php.png'],
+];
+
+export default {
+  components: { Loader },
+  data() {
+    return {
+      store,
+      project: {},
+      itsReady: false,
+      videoSources: [],
+      descriptions: [],
+      videoResp: []
+    };
+  },
+  methods: {
+    getApi(slug) {
+      axios
+        .get(this.store.apiUrl + 'projects/' + slug)
+        .then((result) => {
+          this.project = result.data;
+          this.videoSources = this.project.video ? this.project.video.split('<pc>') : [];
+          this.descriptions = this.project.description ? this.project.description.split('<pc>') : [];
+          this.videoResp = this.project.video_resp ? this.project.video_resp.split('<pc>') : [];
+          this.store.githubShow = this.project.github;
+          this.itsReady = true; 
+        })
+        .catch((error) => {
+          console.error('Error fetching project data:', error);
+        });
+    },
+    getTechnologyPath(technologyName) {
+      for (const [name, path] of technologyList) {
+        if (name === technologyName) {
+          return path;
+        }
+      }
+      return null; 
+    },
+  },
+  mounted() {
+    this.getApi(this.$route.params.slug);
+  }
+};
+</script>
+
 <template>
   <div v-if="!itsReady" class="loader-wrapper">
     <Loader />
@@ -34,74 +95,28 @@
           </div>
         </div>
       </div>
+      <div class="row video-row text-center" v-if="videoResp.length > 0">
+        <h2 class="mb-5">Anteprima Responsive</h2>
+        <div class="col-6 video-container">
+          <video class="video-section zoom-animation i-pad" autoplay loop muted>
+            <source :src="'../../public/videos/' + videoResp[0]" type="video/mp4">
+            Il tuo browser non supporta il tag video.
+          </video>
+        </div>
+        <div class="col-6 video-container">
+          <video class="video-section zoom-animation i-phone" autoplay loop muted>
+            <source :src="'../../public/videos/' + videoResp[1]" type="video/mp4">
+            Il tuo browser non supporta il tag video.
+          </video>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
-<script>
-import axios from 'axios';
-import { store } from '../store';
-import Loader from '../components/subComponents/Loader.vue';
-
-// Mapping technologies to their icons
-const technologyList = [
-  ['HTML', '../../../public/icons/html.png'],
-  ['CSS', '../../../public/icons/css.png'],
-  ['Javascript', '../../../public/icons/js.png'],
-  ['Boostrap', '../../../public/icons/boot.png'],
-  ['Vue', '../../../public/icons/vue.png'],
-  ['Tailwind', '../../../public/icons/tailwind.png'],
-  ['Mysql', '../../../public/icons/mysql.png'],
-  ['React', '../../../public/icons/react.png'],
-  ['Laravel', '../../../public/icons/laravel.png'],
-  ['PHP', '../../../public/icons/php.png'],
-];
-
-export default {
-  components: { Loader },
-  data() {
-    return {
-      store,
-      project: {},
-      itsReady: false,
-      videoSources: [],
-      descriptions: []
-    };
-  },
-  methods: {
-    getApi(slug) {
-      axios
-        .get(this.store.apiUrl + 'projects/' + slug)
-        .then((result) => {
-          this.project = result.data;
-          this.videoSources = this.project.video ? this.project.video.split('<pc>') : [];
-          this.descriptions = this.project.description ? this.project.description.split('<pc>') : [];
-          this.store.githubShow = this.project.github;
-          this.itsReady = true; 
-        })
-        .catch((error) => {
-          console.error('Error fetching project data:', error);
-        });
-    },
-    getTechnologyPath(technologyName) {
-      for (const [name, path] of technologyList) {
-        if (name === technologyName) {
-          return path;
-        }
-      }
-      return null; 
-    },
-  },
-  mounted() {
-    this.getApi(this.$route.params.slug);
-  }
-};
-</script>
-
 <style lang="scss" scoped>
-
 .show {
-  
+  min-height: 700px;
   color: #feffff;
   background: linear-gradient(
     135deg,
@@ -110,26 +125,28 @@ export default {
     rgba(30, 30, 30, 0.7),
     rgba(65, 105, 225, 0.5)
   );
-  .technologies {
-  display: inline-block;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #ffffff;
-  text-shadow: 0px 0px 10px rgba(30, 144, 255, 1); 
-  padding: 5px 10px;
-  border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.5); 
 
-  .icon {
-  width: 30px;
-  height: auto; 
-  margin: 0px 4px; 
+  .technologies {
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0px 0px 10px rgba(30, 144, 255, 1); 
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5); 
+
+    .icon {
+      width: 30px;
+      height: auto; 
+      margin: 0px 4px; 
+    }
   }
-}
 
   .technology-icon {
     display: inline-block; // Visualizza le icone in linea
   }
+
   h2 {
     text-shadow: 0px 0px 10px rgba(30, 144, 255, 0.8); // Blue glow shadow 
 
@@ -143,6 +160,8 @@ export default {
   }
 
   .video-description {
+    max-width: 100%; 
+    height: auto;  
     margin-top: 10px;
     color: #dcdcdc;
     font-size: 1.3rem;
@@ -192,6 +211,37 @@ export default {
     justify-content: space-between;
   }
 
+  // Centering and sizing the video elements
+  .video-row {
+    display: flex; // Use flexbox for centering
+    justify-content: center; // Center the videos
+    align-items: center; // Align items vertically in the center
+    margin: 0 auto; // Center the row
+    padding: 20px 0; // Add padding for spacing
+
+    .video-container {
+      display: flex; // Make each video container a flexbox
+      justify-content: center; // Center the video
+      align-items: center; // Align video vertically
+      width: 100%; // Take full width
+      max-width: 400px; // Set a max-width to ensure videos are not too large
+      height: auto; // Maintain aspect ratio
+
+      video {
+        height: auto; // Maintain aspect ratio
+        max-height: 430px; // Set a max height for uniformity
+      }
+
+      .i-pad{
+        border-radius: 20px;
+      }
+
+      .i-phone{
+        border-radius: 30px;
+      }
+    }
+  }
+
   // Zoom animation
   .zoom-animation {
     animation: zoom-in 0.8s ease-in-out forwards;
@@ -222,10 +272,5 @@ export default {
     transform: scale(1); /* End at normal size */
     opacity: 1; /* End fully visible */
   }
-}
-
-.zoom-animation {
-  animation: zoom-in 0.8s ease-in-out forwards; /* Applies the zoom animation */
-  overflow: hidden; /* Prevents overflow during animation */
 }
 </style>
