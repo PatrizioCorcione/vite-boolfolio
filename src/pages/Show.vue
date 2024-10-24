@@ -52,9 +52,6 @@ export default {
       }
       return null; 
     },
-  onVideoLoaded(event) {
-    event.target.style.opacity = 1; // Rendi il video visibile quando è pronto
-  },
   },
   mounted() {
     this.getApi(this.$route.params.slug);
@@ -101,7 +98,7 @@ export default {
       <div class="row video-row text-center" v-if="videoResp.length > 0">
         <h2 class="mb-5">Anteprima Responsive</h2>
         <div class="col-6 video-container">
-          <video class="video-section zoom-animation i-phone" autoplay loop muted>
+          <video class="video-section zoom-animation i-pad" autoplay loop muted>
             <source :src="'/videos/' + videoResp[0]" type="video/mp4">
             Il tuo browser non supporta il tag video.
           </video>

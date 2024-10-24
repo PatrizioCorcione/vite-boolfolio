@@ -26,8 +26,6 @@ export default {
 };
 </script>
 
-
-
 <template>
   <div class="bg bg-primary-dark w-100 py-5">
     <div class="text-center">

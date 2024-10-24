@@ -1,16 +1,13 @@
 <script>
 
-import axios from 'axios';
 import {store} from './store.js';
 import Main from './components/Main.vue';
 import Header from './components/Header.vue';
-
 
 export default {
   components:{
       Header,
       Main,
-      
     },
   data() {
     return {

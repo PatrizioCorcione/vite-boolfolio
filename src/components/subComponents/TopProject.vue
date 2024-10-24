@@ -1,7 +1,7 @@
 <script>
-import { store } from '../../store'; // Assuming your projects are in the Vuex store
+import { store } from '../../store';
+import axios from 'axios'; // Assicurati di avere axios installato
 
-// Mapping technologies to their icons
 const technologyList = [
   ['HTML', '/icons/html.png'],
   ['CSS', '/icons/css.png'],
@@ -18,21 +18,17 @@ const technologyList = [
 export default {
   data() {
     return {
-      localProjects: [], // Local array for projects
-      fixedTitles: ['Deliveboo', 'Boolflix', 'Campominato', 'Vetrina Damon', 'Discord', 'Rick & Morty'], // Fixed titles to show
+      localProjects: [],
+      fixedTitles: ['Deliveboo', 'Boolflix', 'Campominato', 'Vetrina Damon', 'Discord', 'Rick & Morty'],
     };
   },
-  mounted() {
-    // Populate local array with data from store on component mount
-    this.localProjects = [...store.projects].map(project => ({ ...project, isVisible: false }));
-
-    // Use nextTick to wait for DOM updates
+  async mounted() {
+    await this.loadProjects();
     this.$nextTick(() => {
-      // Set up the Intersection Observer
       const options = {
-        root: null, // Use the viewport as the root
+        root: null,
         rootMargin: '0px',
-        threshold: 0.1, // Trigger when 10% of the card is visible
+        threshold: 0.1,
       };
 
       const observer = new IntersectionObserver((entries) => {
@@ -40,35 +36,41 @@ export default {
           if (entry.isIntersecting) {
             const index = Array.from(this.$refs.projectCards).indexOf(entry.target);
             if (index !== -1) {
-              this.localProjects[index].isVisible = true; // Set the project to visible
-              observer.unobserve(entry.target); // Stop observing the target
+              this.localProjects[index].isVisible = true;
+              observer.unobserve(entry.target);
             }
           }
         });
       }, options);
 
-      // Check if projectCards exists and observe each project card
       if (this.$refs.projectCards) {
         this.$refs.projectCards.forEach(card => observer.observe(card));
       }
     });
   },
-  computed: {
+  methods: {
+    async loadProjects() {
+      try {
+        // Modifica questa parte in base al tuo endpoint API
+        const response = await axios.get('https://api.tuo-endpoint.com/projects');
+        // Supponiamo che l'API restituisca un array di progetti
+        this.localProjects = response.data.map(project => ({ ...project, isVisible: false }));
+      } catch (error) {
+        console.error('Errore nel caricamento dei progetti:', error);
+      }
+    },
     filteredProjects() {
-      // Filter local project array based on specific titles
       return this.localProjects.filter((project) =>
         this.fixedTitles.includes(project.title)
       );
     },
-  },
-  methods: {
     getTechnologyPath(technologyName) {
       for (const [name, path] of technologyList) {
         if (name === technologyName) {
-          return path; // Return path if found
+          return path;
         }
       }
-      return null; // Return null if not found
+      return null;
     }
   }
 };
@@ -99,50 +101,52 @@ export default {
 .container-custom {
   margin-top: 70px;
   scroll-margin-top: 70px;
-  .col-md-4{
+
+  .col-md-4 {
     height: 480px;
   }
+
   .project-card {
-  background-color: transparent; /* Remove the background color */
-  border-radius: 10px;
-  overflow: hidden; /* Ensure content doesn't spill out */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out; /* Increase duration for smoother effect */
-  transform: translateY(50px); /* Start positioned further below */
-  opacity: 0; /* Initially hidden */
+    background-color: transparent;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+    transform: translateY(50px);
+    opacity: 0;
 
-  &.zoom-in {
-    transform: translateY(0); /* Move to original position when visible */
-    opacity: 1; /* Make visible */
-  }
+    &.zoom-in {
+      transform: translateY(0);
+      opacity: 1;
+    }
 
-  &:hover {
-    transform: scale(1); /* Scale to original size on hover */
-  }
+    &:hover {
+      transform: scale(1.05);
+    }
 
     .card-img-top {
-      width: 100%; /* Ensure the image takes the full width of the card */
-      height: auto; /* Match the border radius */
+      width: 100%;
+      height: auto;
     }
 
     .card-body {
       text-align: center;
-      position: absolute; /* Position text over the image */
-      bottom: 0; /* Stick to the bottom of the card */
+      position: absolute;
+      bottom: 0;
       left: 0;
       right: 0;
       padding: 20px;
-      background: rgba(0, 0, 0, 0.725); /* Semi-transparent background for text visibility */
-      color: white; /* White text for better readability */
-      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); /* Add text shadow */
-      opacity: 0; /* Make the text initially invisible */
-      transform: translateY(20px); /* Move text down initially */
+      background: rgba(0, 0, 0, 0.725);
+      color: white;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+      opacity: 0;
+      transform: translateY(20px);
       transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     }
 
     &:hover .card-body {
-      opacity: 1; /* Make the text visible on hover */
-      transform: translateY(0); /* Move text back to original position */
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .card-title {
@@ -156,14 +160,13 @@ export default {
 
     .technology-icon {
       display: inline-block;
-      margin-right: 8px; 
+      margin-right: 8px;
     }
-    
+
     .icon {
       width: 30px;
-      height: auto; /* Maintain proportions */
+      height: auto;
     }
   }
 }
 </style>
-

@@ -1,23 +1,49 @@
+<script>
+  // Import delle dipendenze
+  import { store } from '@/store';
+
+  export default {
+    data() {
+      return {
+        store,
+      };
+    },
+    methods: {
+      // Verifica se il percorso corrente corrisponde al nome specificato
+      isCurrentRoute(routeName) {
+        return this.$route.name === routeName;
+      },
+      // Naviga verso la sezione specificata
+      navigateToSection(page) {
+        this.$router.push({ path: `${page}` });
+      }
+    }
+  };
+</script>
+      
 <template>
+  <!-- Header con la navigazione -->
   <div class="header">  
     <nav class="navbar d-flex justify-content-center">
+      <!-- Menu per la homepage -->
       <ul v-if="isCurrentRoute('home')" class="navbar__menu list-unstyled d-flex justify-content-between w-50 m-0">
         <li class="navbar__item">
           <a href="#about" class="text-decoration-none" data-replace="Su di me"><span>Su di me</span></a>
         </li>
         <li class="navbar__item">
-          <a href="#beast-projects" class="text-decoration-none" data-replace="Progetti top"><span>Progetti top</span></a>    
+          <a href="#beast-projects" class="text-decoration-none" data-replace="Progetti top"><span>Progetti top</span></a>
         </li>
         <li class="navbar__item logo-link">
           <img src="../../public/img/animal-2028258_640.png" alt="Logo">
         </li>
         <li class="navbar__item">
-          <a href="#all-projects" class="text-decoration-none" data-replace="Progetti"><span>Progetti</span></a>       
+          <a href="#all-projects" class="text-decoration-none" data-replace="Progetti"><span>Progetti</span></a>
         </li>
         <li class="navbar__item">
-          <a href="#contact" class="text-decoration-none" data-replace="Contattami"><span>Contattami</span></a>      
+          <a href="#contact" class="text-decoration-none" data-replace="Contattami"><span>Contattami</span></a>
         </li>
       </ul>
+      <!-- Menu per le altre pagine -->
       <ul v-else class="navbar__menu list-unstyled d-flex w-100 m-0">
         <li class="navbar__item back-home">
           <a href="/" class="text-decoration-none" data-replace="Torna alla home">
@@ -25,7 +51,9 @@
           </a>
         </li>
         <li>
-          <a class="btn btn-outline-light" :href= this.store.githubShow  target="_blank"><i class="fab fa-github"></i>GitHub</a>
+          <a class="btn btn-outline-light" :href="this.store.githubShow" target="_blank">
+            <i class="fab fa-github"></i> GitHub
+          </a>
         </li>
         <li class="navbar__item logo-link">
           <img src="../../public/img/animal-2028258_640.png" alt="Logo">
@@ -35,26 +63,8 @@
   </div>
 </template>
 
-<script>
-import { store } from '@/store';
-export default {
-  data() {
-    return {
-      store,
-    };
-  },
-  methods: {
-    isCurrentRoute(routeName) {
-      return this.$route.name === routeName;
-    },
-    navigateToSection(page) {
-      this.$router.push({ path: `${page}` });
-    }
-  }
-}
-</script>
-
 <style lang="scss" scoped>
+// Stile generale per l'header
 .header {
   font-family: "Roboto Mono", monospace;
   position: sticky;
@@ -64,27 +74,32 @@ export default {
   border-bottom: 1px solid cornflowerblue;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
+  // Stile della navbar
   .navbar {
     display: flex;
     justify-content: center;
     padding: 10px;
 
+    // Icona GitHub
     .fa-github {
-    font-size: 1.3rem;
-    margin-right: 5px;
-  }
+      font-size: 1.3rem;
+      margin-right: 5px;
+    }
 
+    // Stile per il menu di navigazione
     .navbar__menu {
       list-style: none;
       margin: 0;
       padding: 0;
       display: flex;
       align-items: center;
-      justify-content: space-between; /* Distribute items evenly */
+      justify-content: space-between;
 
+      // Stile per ogni elemento del menu
       .navbar__item {
         margin: 0 15px;
 
+        // Stile per i link
         a {
           overflow: hidden;
           position: relative;
@@ -131,28 +146,22 @@ export default {
           }
         }
 
-        // Stili specifici per il link del logo
+        // Stile specifico per il link del logo
         &.logo-link {
           text-decoration: none;
-          &::before,
-          &::after {
-            content: none;
-          }
-          &:hover {
-            color: inherit;
-          }
 
           img {
-            transition: transform 0.6s ease; // Aggiungi una transizione per l'effetto flip
+            transition: transform 0.6s ease;
           }
 
           &:hover img {
-            transform: rotateY(180deg); // Effetto flip all'hover
+            transform: rotateY(180deg);
           }
         }
       }
     }
 
+    // Stile per le immagini del logo
     img {
       width: 80px;
       margin: 0 20px;
@@ -160,7 +169,7 @@ export default {
 
     // Stile per il link "Torna alla Home"
     .back-home {
-      margin-right: auto; /* Align to the left */
+      margin-right: auto;
       display: flex;
       align-items: center;
 
@@ -170,7 +179,7 @@ export default {
         font-size: 1rem;
 
         i {
-          margin-right: 5px; // Space between icon and text
+          margin-right: 5px;
         }
       }
     }

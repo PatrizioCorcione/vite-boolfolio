@@ -1,3 +1,39 @@
+<script>
+export default {
+  data() {
+    return {
+      showImage: false,
+      showText: false,
+      fullText: "Codice non solo per risolvere problemi, ma per creare un futuro migliore. Perché il vero debugging è nel trasformare l'idea in realtà.",
+      displayedText: '',
+      currentIndex: 0,
+    };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.showImage = true;
+    }, 100);
+
+    setTimeout(() => {
+      this.showText = true;
+      this.typeWriter();
+    }, 500);
+  },
+  methods: {
+    typeWriter() {
+      const interval = setInterval(() => {
+        if (this.currentIndex < this.fullText.length) {
+          this.displayedText += this.fullText.charAt(this.currentIndex);
+          this.currentIndex++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 30);
+    }
+  }
+}
+</script>
+
 <template>
   <div class="bg" id="hero">
     <div class="container-custom py-5">
@@ -25,47 +61,6 @@
     </div>
   </div>
 </template>
-
-
-
-<script>
-export default {
-  data() {
-    return {
-      showImage: false,
-      showText: false,
-      fullText: "Codice non solo per risolvere problemi, ma per creare un futuro migliore. Perché il vero debugging è nel trasformare l'idea in realtà.",
-      displayedText: '',
-      currentIndex: 0,
-    };
-  },
-  mounted() {
-    // Utilizza un timer per far apparire l'immagine al caricamento
-    setTimeout(() => {
-      this.showImage = true; // Immagine appare prima
-    }, 100); // 100 ms di ritardo prima di far apparire l'immagine
-
-    // Utilizza un timer per far apparire il testo dopo l'immagine
-    setTimeout(() => {
-      this.showText = true; // Testo appare dopo
-      this.typeWriter(); // Inizia l'animazione di scrittura
-    }, 500); // 500 ms di ritardo prima di far apparire il testo
-  },
-  methods: {
-    typeWriter() {
-      const interval = setInterval(() => {
-        if (this.currentIndex < this.fullText.length) {
-          this.displayedText += this.fullText.charAt(this.currentIndex);
-          this.currentIndex++;
-        } else {
-          clearInterval(interval);
-        }
-      }, 30); // Modifica questo valore per cambiare la velocità di scrittura
-    }
-  }
-}
-</script>
-
 
 <style lang="scss" scoped>
 .bg {
@@ -111,4 +106,3 @@ export default {
   }
 }
 </style>
-
