@@ -1,6 +1,6 @@
 <script>
+import axios from 'axios';
 import { store } from '../../store';
-import axios from 'axios'; // Importa axios
 
 const technologyList = [
   ['HTML', '/icons/html.png'],
@@ -20,40 +20,12 @@ export default {
     return {
       localProjects: [],
       fixedTitles: ['Deliveboo', 'Boolflix', 'Campominato', 'Vetrina Damon', 'Discord', 'Rick & Morty'],
+      itsReady: false, // Controlla se il contenuto è pronto
+      error: null, // Stato per gestire gli errori
     };
   },
-  async mounted() { // Rendi mounted asincrono
-    try {
-      // Effettua la chiamata API
-      const response = await axios.get('https://api.tuo-endpoint.com/projects'); // Cambia l'URL con il tuo endpoint
-      this.localProjects = response.data.map(project => ({ ...project, isVisible: false }));
-
-      this.$nextTick(() => {
-        const options = {
-          root: null,
-          rootMargin: '0px',
-          threshold: 0.1,
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const index = Array.from(this.$refs.projectCards).indexOf(entry.target);
-              if (index !== -1) {
-                this.localProjects[index].isVisible = true;
-                observer.unobserve(entry.target);
-              }
-            }
-          });
-        }, options);
-
-        if (this.$refs.projectCards) {
-          this.$refs.projectCards.forEach(card => observer.observe(card));
-        }
-      });
-    } catch (error) {
-      console.error('Error fetching projects:', error);
-    }
+  mounted() {
+    this.loadProjects();
   },
   computed: {
     filteredProjects() {
@@ -63,6 +35,17 @@ export default {
     },
   },
   methods: {
+    async loadProjects() {
+      try {
+        // Assumi che ci sia un'API per caricare i progetti
+        const response = await axios.get(`${store.apiUrl}projects`);
+        this.localProjects = response.data.map(project => ({ ...project, isVisible: false }));
+        this.itsReady = true; // Imposta il contenuto come pronto
+      } catch (error) {
+        this.error = `Errore durante il caricamento dei progetti: ${error.message}`;
+        console.error(this.error); // Log dell'errore
+      }
+    },
     getTechnologyPath(technologyName) {
       for (const [name, path] of technologyList) {
         if (name === technologyName) {
@@ -75,11 +58,17 @@ export default {
 };
 </script>
 
-
 <template>
   <div class="container-custom my-5" id="beast-projects">
     <h2 class="mb-5">Best Projects</h2>
-    <div class="row">
+
+    <!-- Mostra il messaggio di errore se presente -->
+    <div v-if="error" class="error-message">{{ error }}</div>
+
+    <!-- Mostra il caricatore finché i dati non sono pronti -->
+    <Loader v-if="!itsReady" />
+
+    <div class="row" v-else>
       <div v-for="project in filteredProjects" :key="project.id" class="col-md-4 mb-4" ref="projectCards">
         <router-link :to="{ name: 'show', params: { slug: project.slug } }" class="card project-card h-100 text-decoration-none" :class="{ 'zoom-in': project.isVisible }">
           <img :src="'/img/' + project.img" class="card-img-top" alt="...">
@@ -169,6 +158,10 @@ export default {
     }
   }
 }
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin: 20px;
+}
 </style>
-
-
