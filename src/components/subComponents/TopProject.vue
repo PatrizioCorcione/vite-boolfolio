@@ -3,16 +3,16 @@ import { store } from '../../store'; // Assuming your projects are in the Vuex s
 
 // Mapping technologies to their icons
 const technologyList = [
-  ['HTML', '../../../public/icons/html.png'],
-  ['CSS', '../../../public/icons/css.png'],
-  ['Javascript', '../../../public/icons/js.png'],
-  ['Boostrap', '../../../public/icons/boot.png'],
-  ['Vue', '../../../public/icons/vue.png'],
-  ['Tailwind', '../../../public/icons/tailwind.png'],
-  ['Mysql', '../../../public/icons/mysql.png'],
-  ['React', '../../../public/icons/react.png'],
-  ['Laravel', '../../../public/icons/laravel.png'],
-  ['PHP', '../../../public/icons/php.png'],
+  ['HTML', '/icons/html.png'],
+  ['CSS', '/icons/css.png'],
+  ['Javascript', '/icons/js.png'],
+  ['Boostrap', '/icons/boot.png'],
+  ['Vue', '/icons/vue.png'],
+  ['Tailwind', '/icons/tailwind.png'],
+  ['Mysql', '/icons/mysql.png'],
+  ['React', '/icons/react.png'],
+  ['Laravel', '/icons/laravel.png'],
+  ['PHP', '/icons/php.png'],
 ];
 
 export default {

@@ -84,7 +84,7 @@ export default {
         <div class="video-section col-12 d-flex flex-wrap py-5" v-for="(video, index) in videoSources" :key="index">
           <div :class="['col-6', index % 2 === 0 ? 'order-1' : 'order-2']" v-if="video">
             <video class="zoom-animation" width="100%" autoplay loop muted>
-              <source :src="'../../public/videos/' + video" type="video/mp4">
+              <source :src="'/videos/' + video" type="video/mp4">
               Il tuo browser non supporta il tag video.
             </video>
           </div>
