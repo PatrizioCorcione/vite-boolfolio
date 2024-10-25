@@ -53,13 +53,17 @@ export default {
   });
 },
 
-  computed: {
-    filteredProjects() {
-      return this.localProjects.filter((project) =>
-        this.fixedTitles.includes(project.title)
-      );
-    },
+computed: {
+  filteredProjects() {
+    if (!this.itsReady) {
+      return []; // Restituisce un array vuoto se non è pronto
+    }
+    return this.localProjects.filter((project) =>
+      this.fixedTitles.includes(project.title)
+    );
   },
+},
+
   methods: {
     getTechnologyPath(technologyName) {
       for (const [name, path] of technologyList) {
