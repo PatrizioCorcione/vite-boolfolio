@@ -87,7 +87,7 @@ export default {
     <AboutMe />
     <TechnologyIcons />
     <TopProject />
-    <ProjectList />
+    <!-- <ProjectList /> -->
     <Contact />
     <ArrowToTop />
   </div>

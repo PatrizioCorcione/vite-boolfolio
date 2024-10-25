@@ -26,11 +26,7 @@
   <div class="header">  
     <nav class="navbar navbar-expand-lg d-flex justify-content-center">
       <!-- Menu per la homepage -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-       <div class="collapse navbar-collapse navbar-cust " id="navbarSupportedContent">
+       <div class="">
          <ul v-if="isCurrentRoute('home')" class="navbar__menu list-unstyled d-flex justify-content-between m-0">
            <li class="navbar__item">
              <a href="#about" class="text-decoration-none" data-replace="Su di me"><span>Su di me</span></a>
@@ -82,7 +78,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
   // Stile della navbar
-  .navbar-cust {
+  .navbar {
     display: flex;
     justify-content: center;
     padding: 10px;
