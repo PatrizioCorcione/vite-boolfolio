@@ -84,7 +84,7 @@ export default {
         <div class="video-section col-12 d-flex flex-wrap py-5" v-for="(video, index) in videoSources" :key="index">
           <div :class="['col-6', index % 2 === 0 ? 'order-1' : 'order-2']" v-if="video">
             <video class="zoom-animation" width="100%" autoplay loop muted>
-              <source :src="'/videos/' + video" type="video/mp4">
+              <source :src="'/videos/' + video" type="video/webm">
               Il tuo browser non supporta il tag video.
             </video>
           </div>
@@ -99,13 +99,13 @@ export default {
         <h2 class="mb-5">Anteprima Responsive</h2>
         <div class="col-6 video-container">
           <video class="video-section zoom-animation i-pad" autoplay loop muted>
-            <source :src="'/videos/' + videoResp[0]" type="video/mp4">
+            <source :src="'/videos/' + videoResp[0]" type="video/webm">
             Il tuo browser non supporta il tag video.
           </video>
         </div>
         <div class="col-6 video-container">
           <video class="video-section zoom-animation i-phone" autoplay loop muted>
-            <source :src="'/videos/' + videoResp[1]" type="video/mp4">
+            <source :src="'/videos/' + videoResp[1]" type="video/webm">
             Il tuo browser non supporta il tag video.
           </video>
         </div>
