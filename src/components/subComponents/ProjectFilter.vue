@@ -1,6 +1,5 @@
 <script>
-import {store} from '../../store';
-import axios from 'axios';
+import { store } from '../../store';
 
 export default {
   data() {
@@ -15,35 +14,32 @@ export default {
       this.selectedType = null;
       this.selectedTechno = null;
       this.store.searchQuery = '';
+      this.store.filteredProjects = this.store.projects; // Ripristina i progetti filtrati
     },
     getFilter() {
-      const technology = this.selectedTechno ? this.selectedTechno : 'none'; // Usa 'none' se non selezionato
-      const type = this.selectedType ? this.selectedType : 'none'; // Usa 'none' se non selezionato
+      const technology = this.selectedTechno;
+      const type = this.selectedType;
 
-      // Stampa i valori per debugging
-      console.log('Technology:', technology, 'Type:', type);
-
-      // Costruisci l'URL senza doppio slash
-      const url = `${this.store.apiUrl}projects/filter/${technology}/${type}`;
-
-      // Effettua la chiamata API per il filtro
-      axios.get(url)
-        .then(result => {
-            this.store.projects = result.data.projects; // Aggiorna con result.data.projects
-        })
-        .catch(error => {
-            console.error('Errore durante il filtraggio:', error);
-        });
+      // Filtro i progetti basandomi su type e technology selezionati
+      this.store.filteredProjects = this.store.projects.filter(project => {
+        const matchesType = type ? project.type_id === type : true;
+        const matchesTechnology = technology
+          ? project.technologies.some(tech => tech.id === technology)
+          : true;
+        return matchesType && matchesTechnology;
+      });
     }
-
-
+  },
+  mounted() {
+    // Imposta i progetti inizialmente filtrati come tutti i progetti
+    this.store.filteredProjects = this.store.projects;
   }
 }
 </script>
 
 <template>
   <div class="filter">
-    <div class="reset-div" @click="resetFilters(); getFilter(); store.toSearch = ''">
+    <div class="reset-div" @click="resetFilters">
       <h2 class="me-2">FILTER</h2>
       <p class="text-complementare reset">RESET</p>
     </div>
@@ -57,8 +53,7 @@ export default {
           :id="'type-' + type.id"
           :value="type.id"
           v-model="selectedType"
-          @click="selectedType = type.id , getFilter()"
-          
+          @click="getFilter"
         >
         <label class="form-check-label" :for="'type-' + type.id">
           {{ type.type }}
@@ -75,7 +70,7 @@ export default {
           :id="'techno-' + techno.id"
           :value="techno.id"
           v-model="selectedTechno"
-          @click="selectedTechno = techno.id , getFilter()"
+          @click="getFilter"
         >
         <label class="form-check-label" :for="'techno-' + techno.id">
           {{ techno.technologies }}
