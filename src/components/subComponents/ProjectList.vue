@@ -18,11 +18,10 @@ export default {
   computed: {
     // Computed property per filtrare i progetti in base a searchQuery
     filteredProjects() {
-      if (!this.store.searchQuery) {
-        return this.store.projects;
-      }
       // Filtra i progetti in base alla searchQuery
-      return this.store.projects.filter(project => {
+      console.log(this.store.searchQuery);
+      
+      return this.store.filteredProjects.filter(project => {
         return project.title.toLowerCase().includes(this.store.searchQuery.toLowerCase());
       });
     },

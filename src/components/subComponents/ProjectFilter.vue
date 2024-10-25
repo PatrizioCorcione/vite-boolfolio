@@ -20,6 +20,9 @@ export default {
       // Ottieni i valori selezionati per tipo e tecnologia
       const selectedType = this.selectedType;
       const selectedTechno = this.selectedTechno;
+      console.log(this.store.filteredProjects);
+      console.log(selectedType);
+      
 
       // Filtra i progetti basandosi sui filtri selezionati
       this.store.filteredProjects = this.store.projects.filter(project => {
