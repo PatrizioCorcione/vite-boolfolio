@@ -22,32 +22,33 @@ export default {
     };
   },
   mounted() {
-    this.localProjects = [...store.projects].map(project => ({ ...project, isVisible: false }));
+  this.localProjects = [...store.projects].map(project => ({ ...project, isVisible: true })); // Imposta come true per renderle visibili subito.
 
-    this.$nextTick(() => {
-      const options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1,
-      };
+  this.$nextTick(() => {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1,
+    };
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const index = Array.from(this.$refs.projectCards).indexOf(entry.target);
-            if (index !== -1) {
-              this.localProjects[index].isVisible = true;
-              observer.unobserve(entry.target);
-            }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = Array.from(this.$refs.projectCards).indexOf(entry.target);
+          if (index !== -1) {
+            this.localProjects[index].isVisible = true; // Rimuovi la classe di opacità zero quando diventa visibile.
+            observer.unobserve(entry.target);
           }
-        });
-      }, options);
+        }
+      });
+    }, options);
 
-      if (this.$refs.projectCards) {
-        this.$refs.projectCards.forEach(card => observer.observe(card));
-      }
-    });
-  },
+    if (this.$refs.projectCards) {
+      this.$refs.projectCards.forEach(card => observer.observe(card));
+    }
+  });
+},
+
   computed: {
     filteredProjects() {
       return this.localProjects.filter((project) =>
@@ -104,9 +105,13 @@ export default {
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
-    transform: translateY(50px);
+    transform: translateY(0); // Inizia senza translateY
+    opacity: 1; // Inizia visibile
 
-    
+    &.zoom-in {
+      transform: translateY(0);
+      opacity: 1;
+    }
 
     &:hover {
       transform: scale(1.05);
