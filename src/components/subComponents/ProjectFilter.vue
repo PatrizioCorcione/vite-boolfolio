@@ -22,17 +22,15 @@ export default {
       const selectedTechno = this.selectedTechno;
 
       // Filtra i progetti basandosi sui filtri selezionati
-      console.log(this.store.filteredProjects);
-      
       this.store.filteredProjects = this.store.projects.filter(project => {
         // Controlla se il tipo corrisponde (se selezionato)
-        const matchesType = selectedType ? project.type.id === selectedType : true;
-        console.log(this.store.filteredProjects);
+        const matchesType = selectedType ? project.type_id === selectedType : true;
+
         // Controlla se la tecnologia corrisponde (se selezionata)
         const matchesTechnology = selectedTechno
-          ? project.technologies.some(tech => tech.technologies.id === selectedTechno)
+          ? project.technologies.some(tech => tech.id === selectedTechno)
           : true;
-          console.log(this.store.filteredProjects);
+
         // Restituisci true se il progetto corrisponde sia al tipo che alla tecnologia
         return matchesType && matchesTechnology;
       });
@@ -61,7 +59,7 @@ export default {
           :id="'type-' + type.id"
           :value="type.id"
           v-model="selectedType"
-          @change="getFilter"
+          @change="getFilter" 
         >
         <label class="form-check-label" :for="'type-' + type.id">
           {{ type.type }}
@@ -78,7 +76,7 @@ export default {
           :id="'techno-' + techno.id"
           :value="techno.id"
           v-model="selectedTechno"
-          @change="getFilter"
+          @change="getFilter" 
         >
         <label class="form-check-label" :for="'techno-' + techno.id">
           {{ techno.technologies }}
