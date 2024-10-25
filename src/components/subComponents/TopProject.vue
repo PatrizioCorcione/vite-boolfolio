@@ -22,32 +22,37 @@ export default {
     };
   },
   mounted() {
-    this.localProjects = [...store.projects].map(project => ({ ...project, isVisible: false }));
+  this.localProjects = [...store.projects].map(project => ({ ...project, isVisible: false }));
 
-    this.$nextTick(() => {
-      const options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1,
-      };
+  this.$nextTick(() => {
+    // Configura l'osservatore per le schede
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1,
+    };
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const index = Array.from(this.$refs.projectCards).indexOf(entry.target);
-            if (index !== -1) {
-              this.localProjects[index].isVisible = true;
-              observer.unobserve(entry.target);
-            }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = Array.from(this.$refs.projectCards).indexOf(entry.target);
+          if (index !== -1) {
+            this.localProjects[index].isVisible = true; // Attiva visibilità
+            observer.unobserve(entry.target);
           }
-        });
-      }, options);
+        }
+      });
+    }, options);
 
-      if (this.$refs.projectCards) {
-        this.$refs.projectCards.forEach(card => observer.observe(card));
-      }
-    });
-  },
+    if (this.$refs.projectCards) {
+      this.$refs.projectCards.forEach(card => observer.observe(card));
+    }
+
+    // Setta itsReady a true dopo che il ciclo di rendering è completato
+    this.itsReady = true;
+  });
+},
+
   computed: {
     filteredProjects() {
       return this.localProjects.filter((project) =>
@@ -72,7 +77,7 @@ export default {
   <div class="container-custom my-5" id="beast-projects">
     <h2 class="mb-5">Best Projects</h2>
     <div class="row">
-      <div v-for="project in filteredProjects" :key="project.id" class="col-md-4 mb-4" ref="projectCards">
+      <div v-for="project in filteredProjects" :key="project.id" class="col-md-4 mb-4" ref="projectCards" v-show="itsReady">
         <router-link :to="{ name: 'show', params: { slug: project.slug } }" class="card project-card h-100 text-decoration-none" :class="{ 'zoom-in': project.isVisible }">
           <img :src="'/img/' + project.img" class="card-img-top" alt="...">
           <div class="card-body text-white">
@@ -88,6 +93,7 @@ export default {
     </div>
   </div>
 </template>
+
 
 <style lang="scss" scoped>
 .container-custom {
