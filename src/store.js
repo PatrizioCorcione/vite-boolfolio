@@ -4,7 +4,6 @@ export const store = reactive({
   projects:[],
   technologies:[],
   types:[],
-  filteredProjects:[],
   typeValue:'',
   githubShow:'',
   searchQuery: '',
