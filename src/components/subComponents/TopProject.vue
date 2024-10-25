@@ -22,33 +22,32 @@ export default {
     };
   },
   mounted() {
-  this.localProjects = [...store.projects].map(project => ({ ...project, isVisible: true })); // Imposta come true per renderle visibili subito.
+    this.localProjects = [...store.projects].map(project => ({ ...project, isVisible: false }));
 
-  this.$nextTick(() => {
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1,
-    };
+    this.$nextTick(() => {
+      const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1,
+      };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const index = Array.from(this.$refs.projectCards).indexOf(entry.target);
-          if (index !== -1) {
-            this.localProjects[index].isVisible = true; // Rimuovi la classe di opacità zero quando diventa visibile.
-            observer.unobserve(entry.target);
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const index = Array.from(this.$refs.projectCards).indexOf(entry.target);
+            if (index !== -1) {
+              this.localProjects[index].isVisible = true;
+              observer.unobserve(entry.target);
+            }
           }
-        }
-      });
-    }, options);
+        });
+      }, options);
 
-    if (this.$refs.projectCards) {
-      this.$refs.projectCards.forEach(card => observer.observe(card));
-    }
-  });
-},
-
+      if (this.$refs.projectCards) {
+        this.$refs.projectCards.forEach(card => observer.observe(card));
+      }
+    });
+  },
   computed: {
     filteredProjects() {
       return this.localProjects.filter((project) =>
@@ -94,52 +93,50 @@ export default {
 .container-custom {
   margin-top: 70px;
   scroll-margin-top: 70px;
-
-  .col-md-4 {
+  .col-md-4{
     height: 480px;
   }
-
   .project-card {
-    background-color: transparent;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
-    transform: translateY(0); // Inizia senza translateY
-    opacity: 1; // Inizia visibile
+  background-color: transparent; /* Remove the background color */
+  border-radius: 10px;
+  overflow: hidden; /* Ensure content doesn't spill out */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out; /* Increase duration for smoother effect */
+  transform: translateY(50px); /* Start positioned further below */
+  opacity: 0; /* Initially hidden */
 
-    &.zoom-in {
-      transform: translateY(0);
-      opacity: 1;
-    }
+  &.zoom-in {
+    transform: translateY(0); /* Move to original position when visible */
+    opacity: 1; /* Make visible */
+  }
 
-    &:hover {
-      transform: scale(1.05);
-    }
+  &:hover {
+    transform: scale(1); /* Scale to original size on hover */
+  }
 
     .card-img-top {
-      width: 100%;
-      height: auto;
+      width: 100%; /* Ensure the image takes the full width of the card */
+      height: auto; /* Match the border radius */
     }
 
     .card-body {
       text-align: center;
-      position: absolute;
-      bottom: 0;
+      position: absolute; /* Position text over the image */
+      bottom: 0; /* Stick to the bottom of the card */
       left: 0;
       right: 0;
       padding: 20px;
-      background: rgba(0, 0, 0, 0.725);
-      color: white;
-      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
-      opacity: 0;
-      transform: translateY(20px);
+      background: rgba(0, 0, 0, 0.725); /* Semi-transparent background for text visibility */
+      color: white; /* White text for better readability */
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); /* Add text shadow */
+      opacity: 0; /* Make the text initially invisible */
+      transform: translateY(20px); /* Move text down initially */
       transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     }
 
     &:hover .card-body {
-      opacity: 1;
-      transform: translateY(0);
+      opacity: 1; /* Make the text visible on hover */
+      transform: translateY(0); /* Move text back to original position */
     }
 
     .card-title {
@@ -153,15 +150,14 @@ export default {
 
     .technology-icon {
       display: inline-block;
-      margin-right: 8px;
+      margin-right: 8px; 
     }
-
+    
     .icon {
       width: 30px;
-      height: auto;
+      height: auto; /* Maintain proportions */
     }
   }
 }
 </style>
-
 
