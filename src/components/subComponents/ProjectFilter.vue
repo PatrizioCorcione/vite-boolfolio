@@ -7,34 +7,40 @@ export default {
       store,
       selectedType: null,
       selectedTechno: null
-    }
+    };
   },
   methods: {
     resetFilters() {
       this.selectedType = null;
       this.selectedTechno = null;
       this.store.searchQuery = '';
-      this.store.filteredProjects = this.store.projects; // Ripristina i progetti filtrati
+      this.store.filteredProjects = this.store.projects; // Ripristina tutti i progetti
     },
     getFilter() {
-      const technology = this.selectedTechno;
-      const type = this.selectedType;
+      // Ottieni i valori selezionati per tipo e tecnologia
+      const selectedType = this.selectedType;
+      const selectedTechno = this.selectedTechno;
 
-      // Filtro i progetti basandomi su type e technology selezionati
+      // Filtra i progetti basandosi sui filtri selezionati
       this.store.filteredProjects = this.store.projects.filter(project => {
-        const matchesType = type ? project.type_id === type : true;
-        const matchesTechnology = technology
-          ? project.technologies.some(tech => tech.id === technology)
+        // Controlla se il tipo corrisponde (se selezionato)
+        const matchesType = selectedType ? project.id === selectedType : true;
+
+        // Controlla se la tecnologia corrisponde (se selezionata)
+        const matchesTechnology = selectedTechno
+          ? project.technologies.some(tech => tech.id === selectedTechno)
           : true;
+
+        // Restituisci true se il progetto corrisponde sia al tipo che alla tecnologia
         return matchesType && matchesTechnology;
       });
     }
   },
   mounted() {
-    // Imposta i progetti inizialmente filtrati come tutti i progetti
+    // Assicurati che l'array filteredProjects sia impostato inizialmente
     this.store.filteredProjects = this.store.projects;
   }
-}
+};
 </script>
 
 <template>
@@ -53,7 +59,7 @@ export default {
           :id="'type-' + type.id"
           :value="type.id"
           v-model="selectedType"
-          @click="getFilter"
+          @change="getFilter" <!-- Usa @change per applicare il filtro al cambio del valore -->
         >
         <label class="form-check-label" :for="'type-' + type.id">
           {{ type.type }}
@@ -70,7 +76,7 @@ export default {
           :id="'techno-' + techno.id"
           :value="techno.id"
           v-model="selectedTechno"
-          @click="getFilter"
+          @change="getFilter" <!-- Usa @change per applicare il filtro al cambio del valore -->
         >
         <label class="form-check-label" :for="'techno-' + techno.id">
           {{ techno.technologies }}
@@ -129,4 +135,4 @@ export default {
   }
 }
 
-</style>
+</>
