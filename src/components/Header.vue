@@ -24,9 +24,9 @@
 <template>
   <!-- Header con la navigazione -->
   <div class="header">  
-    <nav class="navbar d-flex justify-content-center">
+    <nav class="navbar navbar-expand-lg d-flex justify-content-center">
       <!-- Menu per la homepage -->
-      <ul v-if="isCurrentRoute('home')" class="navbar__menu list-unstyled d-flex justify-content-between w-50 m-0">
+      <ul v-if="isCurrentRoute('home')" class="navbar__menu list-unstyled d-flex justify-content-between  m-0">
         <li class="navbar__item">
           <a href="#about" class="text-decoration-none" data-replace="Su di me"><span>Su di me</span></a>
         </li>
