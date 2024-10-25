@@ -49,7 +49,7 @@ export default {
 <template>
   <div class="filter">
     <div class="reset-div" @click="resetFilters">
-      <h2 class="me-2">FILTER</h2>
+      <h2 class="me-2 filter-text">FILTER</h2>
       <p class="text-complementare reset">RESET</p>
     </div>
     <p class="text-tt font-weight-bold text-complementare">Tipi</p>
@@ -99,8 +99,10 @@ export default {
   font-size: .9rem;
   .reset-div{
     display: flex !important;
-    justify-content: center;
     align-items: center;
+    .filter-text{
+      font-size: 3rem;
+    }
     .reset{
       cursor: pointer;
       &:hover{
@@ -113,10 +115,6 @@ export default {
   }
   .techno-check{
     color: rgb(255, 255, 255);
-    display: flex;
-    flex-direction: column;
-    height: 81px;
-    flex-wrap: wrap;
     input{
       &:hover{
         cursor: pointer;

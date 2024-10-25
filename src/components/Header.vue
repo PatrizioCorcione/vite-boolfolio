@@ -26,39 +26,46 @@
   <div class="header">  
     <nav class="navbar navbar-expand-lg d-flex justify-content-center">
       <!-- Menu per la homepage -->
-      <ul v-if="isCurrentRoute('home')" class="navbar__menu list-unstyled d-flex justify-content-between  m-0">
-        <li class="navbar__item">
-          <a href="#about" class="text-decoration-none" data-replace="Su di me"><span>Su di me</span></a>
-        </li>
-        <li class="navbar__item">
-          <a href="#beast-projects" class="text-decoration-none" data-replace="Progetti top"><span>Progetti top</span></a>
-        </li>
-        <li class="navbar__item logo-link">
-          <img src="../../public/img/animal-2028258_640.png" alt="Logo">
-        </li>
-        <li class="navbar__item">
-          <a href="#all-projects" class="text-decoration-none" data-replace="Progetti"><span>Progetti</span></a>
-        </li>
-        <li class="navbar__item">
-          <a href="#contact" class="text-decoration-none" data-replace="Contattami"><span>Contattami</span></a>
-        </li>
-      </ul>
-      <!-- Menu per le altre pagine -->
-      <ul v-else class="navbar__menu list-unstyled d-flex w-100 m-0">
-        <li class="navbar__item back-home">
-          <a href="/" class="text-decoration-none" data-replace="Torna alla home">
-            <span><i class="fa-solid fa-angles-left"></i> Torna alla home</span>
-          </a>
-        </li>
-        <li>
-          <a class="btn btn-outline-light" :href="this.store.githubShow" target="_blank">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-        </li>
-        <li class="navbar__item logo-link">
-          <img src="../../public/img/animal-2028258_640.png" alt="Logo">
-        </li>
-      </ul>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+       <div class="collapse navbar-collapse navbar-cust " id="navbarSupportedContent">
+         <ul v-if="isCurrentRoute('home')" class="navbar__menu list-unstyled d-flex justify-content-between m-0">
+           <li class="navbar__item">
+             <a href="#about" class="text-decoration-none" data-replace="Su di me"><span>Su di me</span></a>
+           </li>
+           <li class="navbar__item">
+             <a href="#beast-projects" class="text-decoration-none" data-replace="Progetti top"><span>Progetti top</span></a>
+           </li>
+           <li class="navbar__item logo-link">
+             <img src="../../public/img/animal-2028258_640.png" alt="Logo">
+           </li>
+           <li class="navbar__item">
+             <a href="#all-projects" class="text-decoration-none" data-replace="Progetti"><span>Progetti</span></a>
+           </li>
+           <li class="navbar__item">
+             <a href="#contact" class="text-decoration-none" data-replace="Contattami"><span>Contattami</span></a>
+           </li>
+         </ul>
+         <!-- Menu per le altre pagine -->
+         <ul v-else class="navbar__menu list-unstyled d-flex w-100 m-0">
+           <li class="navbar__item back-home">
+             <a href="/" class="text-decoration-none" data-replace="Torna alla home">
+               <span><i class="fa-solid fa-angles-left"></i> Torna alla home</span>
+             </a>
+           </li>
+           <li>
+             <a class="btn btn-outline-light" :href="this.store.githubShow" target="_blank">
+               <i class="fab fa-github"></i> GitHub
+             </a>
+           </li>
+           <li class="navbar__item logo-link">
+             <img src="../../public/img/animal-2028258_640.png" alt="Logo">
+           </li>
+         </ul>
+
+       </div>
     </nav>
   </div>
 </template>
@@ -75,7 +82,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
   // Stile della navbar
-  .navbar {
+  .navbar-cust {
     display: flex;
     justify-content: center;
     padding: 10px;
