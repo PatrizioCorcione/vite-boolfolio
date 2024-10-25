@@ -24,11 +24,11 @@ export default {
       // Filtra i progetti basandosi sui filtri selezionati
       this.store.filteredProjects = this.store.projects.filter(project => {
         // Controlla se il tipo corrisponde (se selezionato)
-        const matchesType = selectedType ? project.id === selectedType : true;
+        const matchesType = selectedType ? project.type === selectedType : true;
 
         // Controlla se la tecnologia corrisponde (se selezionata)
         const matchesTechnology = selectedTechno
-          ? project.technologies.some(tech => tech.id === selectedTechno)
+          ? project.technologies.some(tech => tech.technologies === selectedTechno)
           : true;
 
         // Restituisci true se il progetto corrisponde sia al tipo che alla tecnologia
@@ -108,7 +108,6 @@ export default {
   .text-tt{
     font-size: 1.5rem;
   }
-
   .techno-check{
     color: rgb(255, 255, 255);
     display: flex;
