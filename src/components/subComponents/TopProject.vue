@@ -1,6 +1,7 @@
 <script>
-import { store } from '../../store';
+import { store } from '../../store'; // Assuming your projects are in the Vuex store
 
+// Mapping technologies to their icons
 const technologyList = [
   ['HTML', '/icons/html.png'],
   ['CSS', '/icons/css.png'],
@@ -17,61 +18,57 @@ const technologyList = [
 export default {
   data() {
     return {
-      localProjects: [],
-      fixedTitles: ['Deliveboo', 'Boolflix', 'Campominato', 'Vetrina Damon', 'Discord', 'Rick & Morty'],
+      localProjects: [], // Local array for projects
+      fixedTitles: ['Deliveboo', 'Boolflix', 'Campominato', 'Vetrina Damon', 'Discord', 'Rick & Morty'], // Fixed titles to show
     };
   },
   mounted() {
-  this.localProjects = [...store.projects].map(project => ({ ...project, isVisible: false }));
+    // Populate local array with data from store on component mount
+    this.localProjects = [...store.projects].map(project => ({ ...project, isVisible: false }));
 
-  this.$nextTick(() => {
-    // Configura l'osservatore per le schede
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1,
-    };
+    // Use nextTick to wait for DOM updates
+    this.$nextTick(() => {
+      // Set up the Intersection Observer
+      const options = {
+        root: null, // Use the viewport as the root
+        rootMargin: '0px',
+        threshold: 0.1, // Trigger when 10% of the card is visible
+      };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const index = Array.from(this.$refs.projectCards).indexOf(entry.target);
-          if (index !== -1) {
-            this.localProjects[index].isVisible = true; // Attiva visibilità
-            observer.unobserve(entry.target);
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const index = Array.from(this.$refs.projectCards).indexOf(entry.target);
+            if (index !== -1) {
+              this.localProjects[index].isVisible = true; // Set the project to visible
+              observer.unobserve(entry.target); // Stop observing the target
+            }
           }
-        }
-      });
-    }, options);
+        });
+      }, options);
 
-    if (this.$refs.projectCards) {
-      this.$refs.projectCards.forEach(card => observer.observe(card));
-    }
-
-    // Setta itsReady a true dopo che il ciclo di rendering è completato
-    this.itsReady = true;
-  });
-},
-
-computed: {
-  filteredProjects() {
-    if (!this.itsReady) {
-      return []; // Restituisce un array vuoto se non è pronto
-    }
-    return this.localProjects.filter((project) =>
-      this.fixedTitles.includes(project.title)
-    );
+      // Check if projectCards exists and observe each project card
+      if (this.$refs.projectCards) {
+        this.$refs.projectCards.forEach(card => observer.observe(card));
+      }
+    });
   },
-},
-
+  computed: {
+    filteredProjects() {
+      // Filter local project array based on specific titles
+      return this.localProjects.filter((project) =>
+        this.fixedTitles.includes(project.title)
+      );
+    },
+  },
   methods: {
     getTechnologyPath(technologyName) {
       for (const [name, path] of technologyList) {
         if (name === technologyName) {
-          return path;
+          return path; // Return path if found
         }
       }
-      return null;
+      return null; // Return null if not found
     }
   }
 };
@@ -81,7 +78,7 @@ computed: {
   <div class="container-custom my-5" id="beast-projects">
     <h2 class="mb-5">Best Projects</h2>
     <div class="row">
-      <div v-for="project in filteredProjects" :key="project.id" class="col-md-4 mb-4" ref="projectCards" v-show="itsReady">
+      <div v-for="project in filteredProjects" :key="project.id" class="col-md-4 mb-4" ref="projectCards">
         <router-link :to="{ name: 'show', params: { slug: project.slug } }" class="card project-card h-100 text-decoration-none" :class="{ 'zoom-in': project.isVisible }">
           <img :src="'/img/' + project.img" class="card-img-top" alt="...">
           <div class="card-body text-white">
@@ -97,7 +94,6 @@ computed: {
     </div>
   </div>
 </template>
-
 
 <style lang="scss" scoped>
 .container-custom {
