@@ -22,15 +22,17 @@ export default {
       const selectedTechno = this.selectedTechno;
 
       // Filtra i progetti basandosi sui filtri selezionati
+      console.log(this.store.filteredProjects);
+      
       this.store.filteredProjects = this.store.projects.filter(project => {
         // Controlla se il tipo corrisponde (se selezionato)
         const matchesType = selectedType ? project.type.id === selectedType : true;
-
+        console.log(this.store.filteredProjects);
         // Controlla se la tecnologia corrisponde (se selezionata)
         const matchesTechnology = selectedTechno
           ? project.technologies.some(tech => tech.technologies.id === selectedTechno)
           : true;
-
+          console.log(this.store.filteredProjects);
         // Restituisci true se il progetto corrisponde sia al tipo che alla tecnologia
         return matchesType && matchesTechnology;
       });
