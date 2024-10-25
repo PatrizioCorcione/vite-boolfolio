@@ -49,8 +49,8 @@ export default {
 <template>
   <div class="filter">
     <div class="reset-div" @click="resetFilters">
+      <p class="text-complementare reset m-0">RESET</p>
       <h2 class="me-2 filter-text">FILTER</h2>
-      <p class="text-complementare reset">RESET</p>
     </div>
     <p class="text-tt font-weight-bold text-complementare">Tipi</p>
     <div class="form-check type-check">
@@ -91,17 +91,16 @@ export default {
 
 <style lang="scss" scoped>
 .filter{
-  padding-top: 133px;
+  padding-top: 146px;
   margin-bottom: 49px;
   margin-top: 31px;
   position: sticky;
   top: 0;
   font-size: .9rem;
   .reset-div{
-    display: flex !important;
-    align-items: center;
+    
     .filter-text{
-      font-size: 3rem;
+      font-size: 2rem;
     }
     .reset{
       cursor: pointer;

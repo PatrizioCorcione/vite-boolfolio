@@ -68,7 +68,7 @@ export default {
   <div class="bg bg-primary-dark w-100 py-5">
     <div id="all-projects" class="container-custom">
       <div class="row">
-        <div class="col-8">
+        <div class="col-10">
           <h2>All My Projects</h2>
           <form 
             class="w-100"
@@ -105,7 +105,7 @@ export default {
             </table>
           </div>
         </div>
-        <div class="col-4" ref="projectFilter" :class="{ 'slide-in-right': isFilterVisible }">
+        <div class="col-2" ref="projectFilter" :class="{ 'slide-in-right': isFilterVisible }">
           <ProjectFilter/>
         </div>
       </div>
