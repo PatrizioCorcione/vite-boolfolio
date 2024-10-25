@@ -59,7 +59,7 @@ export default {
           :id="'type-' + type.id"
           :value="type.id"
           v-model="selectedType"
-          @change="getFilter" 
+          @change="getFilter"
         >
         <label class="form-check-label" :for="'type-' + type.id">
           {{ type.type }}
@@ -76,7 +76,7 @@ export default {
           :id="'techno-' + techno.id"
           :value="techno.id"
           v-model="selectedTechno"
-          @change="getFilter" 
+          @change="getFilter"
         >
         <label class="form-check-label" :for="'techno-' + techno.id">
           {{ techno.technologies }}
@@ -134,3 +134,4 @@ export default {
     }
   }
 }
+</style>
