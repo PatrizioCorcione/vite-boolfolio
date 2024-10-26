@@ -112,5 +112,8 @@ export default {
   .slogan{
     font-size: 1.5rem !important;
   }
+  #hero{
+    height: 600px;
+  }
 }
 </style>
