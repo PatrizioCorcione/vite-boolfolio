@@ -78,7 +78,7 @@ export default {
   <div class="container-custom my-5" id="beast-projects">
     <h2 class="mb-5">Best Projects</h2>
     <div class="row">
-      <div v-for="project in filteredProjects" :key="project.id" class="col-md-4 mb-4" ref="projectCards">
+      <div v-for="project in filteredProjects" :key="project.id" class="col-12 col-md-6 col-lg-4 mb-4" ref="projectCards">
         <router-link :to="{ name: 'show', params: { slug: project.slug } }" class="card project-card h-100 text-decoration-none" :class="{ 'zoom-in': project.isVisible }">
           <img :src="'/img/' + project.img" class="card-img-top" alt="...">
           <div class="card-body text-white">

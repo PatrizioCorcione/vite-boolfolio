@@ -70,7 +70,7 @@ export default {
   <div class="container py-5" id="contact" ref="contactForm" :class="{ 'animate-fade-in': isVisible }">
     <div class="row justify-content-center">
       <h2 class="text-center py-3">Contattami</h2>
-      <div class="col-12 col-md-6 d-flex flex-column align-items-center">
+      <div class="col-12 col-lg-6 d-flex flex-column align-items-center">
         <!-- Sezione informativa e link ai social -->
         <p class="pb-5 px-5 text-center">
           "Se sei interessato a collaborare o a discutere di progetti di programmazione, non esitare a contattarmi: sarei felice di esplorare nuove opportunità insieme! Accanto troverai un modo per inviarmi un’email e cercherò di rispondere con prontezza. Sono sempre aperto a nuove idee e possibilità, quindi non vedo l'ora di sentire la tua proposta!"
@@ -84,7 +84,7 @@ export default {
           </a>
         </div>
       </div>
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-lg-6">
         <!-- Snackbar per notifiche -->
         <!-- Form di contatto -->
         <form @submit.prevent="sendEmail">
