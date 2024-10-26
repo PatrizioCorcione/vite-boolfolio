@@ -67,20 +67,20 @@ export default {
 </script>
 
 <template>
-  <div class="container" id="contact" ref="contactForm" :class="{ 'animate-fade-in': isVisible }">
+  <div class="container py-5" id="contact" ref="contactForm" :class="{ 'animate-fade-in': isVisible }">
     <div class="row justify-content-center">
-      <h2 class="text-center mb-4">Contattami</h2>
-      <div class="col-6 d-flex flex-column justify-content-center align-items-center">
+      <h2 class="text-center py-3">Contattami</h2>
+      <div class="col-12 col-md-6 d-flex flex-column align-items-center ">
         <!-- Sezione informativa e link ai social -->
-        <p class="p-5">
+        <p class="pb-5 px-5 text-center">
           "Se sei interessato a collaborare o a discutere di progetti di programmazione, non esitare a contattarmi: sarei felice di esplorare nuove opportunità insieme! Accanto troverai un modo per inviarmi un’email e cercherò di rispondere con prontezza. Sono sempre aperto a nuove idee e possibilità, quindi non vedo l'ora di sentire la tua proposta!"
         </p>
-        <div>
+        <div class="d-flex w-100 justify-content-around mb-5">
           <a href="https://www.linkedin.com/in/patrizio-corcione-98236a312/" target="blanck" class="btn btn-outline-light"><i class="fa-brands fa-linkedin-in"></i>Linkedin</a>
           <a href="https://github.com/PatrizioCorcione" target="blanck" class="btn btn-outline-light"><i class="fa-brands fa-github"></i>GitHub</a>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-12 col-md-6">
         <!-- Form di contatto -->
         <form @submit.prevent="sendEmail">
           <div class="mb-3">
@@ -139,17 +139,10 @@ export default {
 
 /* Stile per il contenitore principale */
 .container {
-  padding: 80px 0px; /* Padding verticale */
   scroll-margin-top: 70px; /* Margine per lo scroll */
   opacity: 0; /* Opacità iniziale */
   transform: translateX(50px); /* Traslazione iniziale */
   transition: all 0.6s ease-out; /* Transizione per animazioni */
-
-  /* Margine per i link social */
-  a {
-    margin-left: 50px; /* Margine a sinistra per i link */
-  }
-
   /* Icone dei social */
   .fa-github,
   .fa-linkedin-in {
@@ -181,11 +174,6 @@ export default {
     border-radius: 10px; /* Angoli arrotondati */
     padding: 20px; /* Padding per il form */
     background-color: rgba(255, 255, 255, 0.1); /* Sfondo semi-trasparente */
-
-    /* Margine per i campi del form */
-    .mb-3 {
-      margin-bottom: 1rem; /* Margine inferiore per i campi */
-    }
   }
   
   /* Stile per i campi di input e textarea */

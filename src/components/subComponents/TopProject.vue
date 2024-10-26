@@ -122,7 +122,7 @@ export default {
 
     .card-img-top {
       width: 100%; /* Ensure the image takes the full width of the card */
-      height: 500px; /* Match the border radius */
+      height: auto; /* Match the border radius */
     }
 
     .card-body {
