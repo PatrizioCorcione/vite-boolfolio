@@ -6,11 +6,9 @@
         <p class="about-text">
           Benvenuto nel mio portfolio! Mi chiamo Patrizio Corcione e sono un Junior Full Stack Web Developer!
         </p>
-          <p class="about-text"> 
-            Prima di intraprendere questo percorso, ho lavorato come barman in diversi settori, ricoprendo sempre posizioni di responsabilità. 
+          <p class="about-text">  
           Quando mi sono avvicinato al mondo della programmazione, ho subito percepito che fosse la mia vera passione, un settore dinamico e in costante trasformazione, ricco di opportunità per crescere e migliorare. 
           Grazie al corso di Full Stack Web Developer che ho frequentato presso Boolean, ho appreso le competenze necessarie per sviluppare progetti utilizzando linguaggi sia front-end che back-end. 
-          Sono una persona in continua formazione che fa della sua capacità di lavorare in team e della volontà di migliorare i suoi punti di forza.
         </p>
       </div>
     </div>
