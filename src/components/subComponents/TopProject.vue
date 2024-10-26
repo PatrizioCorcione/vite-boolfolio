@@ -168,7 +168,7 @@ export default {
   }
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 1100px) {
   .card-body {
     opacity: 1 !important; /* Keep the card body visible on mobile */
     transform: translateY(0) !important; /* Ensure the text is in the correct position */
