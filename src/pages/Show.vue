@@ -83,7 +83,7 @@ export default {
         <!-- Sezione video -->
         <div class="video-section col-12 d-flex flex-wrap py-5" v-for="(video, index) in videoSources" :key="index">
           <div :class="['col-12 col-lg-6 reset-order', index % 2 === 0 ? 'order-1' : 'order-2']" v-if="video">
-            <video class="zoom-animation" width="100%" autoplay loop muted>
+            <video class="zoom-animation" width="100%" autoplay loop muted playsinline>
               <source :src="'/videos/' + video" type="video/webm">
               Il tuo browser non supporta il tag video.
             </video>
@@ -98,13 +98,13 @@ export default {
       <div class="row video-row text-center" v-if="videoResp.length > 0">
         <h2 class="mb-5">Anteprima Responsive</h2>
         <div class="col-6 video-container">
-          <video class="video-section zoom-animation i-pad" autoplay loop muted>
+          <video class="video-section zoom-animation i-pad" autoplay loop muted playsinline>
             <source :src="'/videos/' + videoResp[0]" type="video/webm">
             Il tuo browser non supporta il tag video.
           </video>
         </div>
         <div class="col-6 video-container py-3">
-          <video class="video-section zoom-animation i-phone" autoplay loop muted>
+          <video class="video-section zoom-animation i-phone" autoplay loop muted playsinline>
             <source :src="'/videos/' + videoResp[1]" type="video/webm">
             Il tuo browser non supporta il tag video.
           </video>
@@ -284,7 +284,7 @@ export default {
 @media (max-width: 700px) {
   .reset-text{
     font-size: 1rem;
-    padding: 0;
+    padding: 0 !important;
   }
 }
 </style>
