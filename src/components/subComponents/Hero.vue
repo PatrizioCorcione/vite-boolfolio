@@ -106,8 +106,11 @@ export default {
   }
 }
 @media (max-width: 767.98px) {
-    img{
-      width: 60%;
-    }
+  img{
+    width: 60%;
   }
+  .slogan{
+    font-size: 1.5rem !important;
+  }
+}
 </style>

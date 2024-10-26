@@ -99,26 +99,28 @@ export default {
 .container-custom {
   margin-top: 70px;
   scroll-margin-top: 70px;
-  .col-md-4{
+
+  .col-md-4 {
     height: 480px;
   }
+
   .project-card {
-  background-color: transparent; /* Remove the background color */
-  border-radius: 10px;
-  overflow: hidden; /* Ensure content doesn't spill out */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out; /* Increase duration for smoother effect */
-  transform: translateY(50px); /* Start positioned further below */
-  opacity: 0; /* Initially hidden */
+    background-color: transparent; /* Remove the background color */
+    border-radius: 10px;
+    overflow: hidden; /* Ensure content doesn't spill out */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out; /* Increase duration for smoother effect */
+    transform: translateY(50px); /* Start positioned further below */
+    opacity: 0; /* Initially hidden */
 
-  &.zoom-in {
-    transform: translateY(0); /* Move to original position when visible */
-    opacity: 1; /* Make visible */
-  }
+    &.zoom-in {
+      transform: translateY(0); /* Move to original position when visible */
+      opacity: 1; /* Make visible */
+    }
 
-  &:hover {
-    transform: scale(1); /* Scale to original size on hover */
-  }
+    &:hover {
+      transform: scale(1); /* Scale to original size on hover */
+    }
 
     .card-img-top {
       width: 100%; /* Ensure the image takes the full width of the card */
@@ -158,11 +160,20 @@ export default {
       display: inline-block;
       margin-right: 8px; 
     }
-    
+
     .icon {
       width: 30px;
       height: auto; /* Maintain proportions */
     }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .card-body {
+    opacity: 1 !important; /* Keep the card body visible on mobile */
+    transform: translateY(0) !important; /* Ensure the text is in the correct position */
+    transition: none;
+     /* No transition on mobile for the card body */
   }
 }
 </style>
