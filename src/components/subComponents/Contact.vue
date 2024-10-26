@@ -190,5 +190,11 @@ export default {
     }
   }
 }
+@media (max-width: 767.98px) {
+    .container{
+      transform: translateX(0px);
+    }
+}
+
 </style>
 
