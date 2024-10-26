@@ -26,8 +26,8 @@
   <div class="header">  
     <nav class="navbar navbar-expand-lg d-flex justify-content-center">
       <!-- Menu per la homepage -->
-      <div>
-        <ul v-if="isCurrentRoute('home')" class="navbar__menu list-unstyled d-flex justify-content-between m-0">
+      <div class="w-100 d-flex justify-content-center">
+        <ul v-if="isCurrentRoute('home')" class="navbar__menu list-unstyled m-0">
           <li class="navbar__item">
             <a href="#about" class="text-decoration-none" data-replace="Su di me"><span>Su di me</span></a>
           </li>
@@ -45,7 +45,7 @@
           </li>
         </ul>
         <!-- Menu per le altre pagine -->
-        <ul v-else class="navbar__menu list-unstyled d-flex w-100 m-0">
+        <ul v-else class="navbar__menu list-unstyled d-flex justify-content-between w-100 m-0">
           <li class="navbar__item back-home">
             <a href="/" class="text-decoration-none" data-replace="Torna alla home">
               <span><i class="fa-solid fa-angles-left"></i> Torna alla home</span>

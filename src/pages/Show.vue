@@ -82,15 +82,15 @@ export default {
         </div>
         <!-- Sezione video -->
         <div class="video-section col-12 d-flex flex-wrap py-5" v-for="(video, index) in videoSources" :key="index">
-          <div :class="['col-6', index % 2 === 0 ? 'order-1' : 'order-2']" v-if="video">
+          <div :class="['col-12 col-lg-6 reset-order', index % 2 === 0 ? 'order-1' : 'order-2']" v-if="video">
             <video class="zoom-animation" width="100%" autoplay loop muted>
               <source :src="'/videos/' + video" type="video/webm">
               Il tuo browser non supporta il tag video.
             </video>
           </div>
-          <div :class="['col-6', index % 2 === 0 ? 'order-2' : 'order-1']" class="px-5">
+          <div :class="['col-12 col-lg-6 reset-order', index % 2 === 0 ? 'order-2' : 'order-1']" class="px-5">
             <div class="video-description">
-              <p :class="[index % 2 === 0 ? 'text-start' : 'text-end']">{{ descriptions[index] || "Nessuna descrizione disponibile." }}</p>
+              <p class="reset-text" :class="[index % 2 === 0 ? 'text-start' : 'text-end']">{{ descriptions[index] || "Nessuna descrizione disponibile." }}</p>
             </div>
           </div>
         </div>
@@ -103,7 +103,7 @@ export default {
             Il tuo browser non supporta il tag video.
           </video>
         </div>
-        <div class="col-6 video-container">
+        <div class="col-6 video-container py-3">
           <video class="video-section zoom-animation i-phone" autoplay loop muted>
             <source :src="'/videos/' + videoResp[1]" type="video/webm">
             Il tuo browser non supporta il tag video.
@@ -271,6 +271,20 @@ export default {
   to {
     transform: scale(1); /* End at normal size */
     opacity: 1; /* End fully visible */
+  }
+}
+@media (max-width: 1100px) {
+  .reset-order {
+    order: 0 !important; // Reset the order to the default flow
+  }
+  .reset-text{
+    text-align: left !important;
+  }
+}
+@media (max-width: 700px) {
+  .reset-text{
+    font-size: 1rem;
+    padding: 0;
   }
 }
 </style>
