@@ -113,7 +113,7 @@ export default {
     font-size: 1.5rem !important;
   }
   #hero{
-    height: 600px;
+    height: 650px;
   }
 }
 </style>

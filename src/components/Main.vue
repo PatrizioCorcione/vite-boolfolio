@@ -35,6 +35,12 @@ export default {
       itsReady: false // Controlla se il contenuto è pronto
     };
   },
+  computed: {
+    isDesktop() {
+      // Controlla se la larghezza della finestra è maggiore o uguale a 768px
+      return window.innerWidth >= 768;
+    }
+  },
 
   // Metodi del componente
   methods: {
@@ -87,7 +93,7 @@ export default {
     <AboutMe />
     <TechnologyIcons />
     <TopProject />
-    <!-- <ProjectList /> -->
+    <ProjectList v-if="isDesktop" />
     <Contact />
     <ArrowToTop />
   </div>
