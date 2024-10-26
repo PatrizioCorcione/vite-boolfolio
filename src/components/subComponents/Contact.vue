@@ -194,6 +194,9 @@ export default {
     .container{
       transform: translateX(0px);
     }
+    #contact{
+      padding-bottom: 135px !important;
+    }
 }
 
 </style>

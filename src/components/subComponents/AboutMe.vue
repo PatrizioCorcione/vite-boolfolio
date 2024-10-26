@@ -62,4 +62,14 @@ export default {
   transform: translateY(0); /* Si sposta nella posizione originale */
   opacity: 1; /* Diventa visibile */
 }
+@media (max-width: 767.98px) {
+  .about-text{
+    text-align: start;
+    line-height: 1.5rem;
+  }
+  #about {
+  padding: 20px 0 60px 0; /* Padding top e bottom */
+  border-radius: 10px; /* Aggiunge angoli arrotondati */
+}
+}
 </style>
