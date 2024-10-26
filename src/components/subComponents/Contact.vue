@@ -3,7 +3,7 @@ import emailjs from 'emailjs-com';
 import Snackbar from './Snackbar.vue';
 
 export default {
-  components:{
+  components: {
     Snackbar,
   },
   data() {
@@ -47,9 +47,9 @@ export default {
     },
     // Invia l'email utilizzando EmailJS
     sendEmail() {
-      const serviceID = 'service_qqcxz4h'; 
-      const templateID = 'template_lsoa77k'; 
-      const userID = 'Xj_7-p3WvdRVyFW3F'; 
+      const serviceID = 'service_qqcxz4h';
+      const templateID = 'template_lsoa77k';
+      const userID = 'Xj_7-p3WvdRVyFW3F';
       console.log('Invio email con i seguenti dati:', this.formData);
 
       emailjs.send(serviceID, templateID, this.formData, userID)
@@ -70,27 +70,36 @@ export default {
   <div class="container py-5" id="contact" ref="contactForm" :class="{ 'animate-fade-in': isVisible }">
     <div class="row justify-content-center">
       <h2 class="text-center py-3">Contattami</h2>
-      <div class="col-12 col-md-6 d-flex flex-column align-items-center ">
+      <div class="col-12 col-md-6 d-flex flex-column align-items-center">
         <!-- Sezione informativa e link ai social -->
         <p class="pb-5 px-5 text-center">
           "Se sei interessato a collaborare o a discutere di progetti di programmazione, non esitare a contattarmi: sarei felice di esplorare nuove opportunità insieme! Accanto troverai un modo per inviarmi un’email e cercherò di rispondere con prontezza. Sono sempre aperto a nuove idee e possibilità, quindi non vedo l'ora di sentire la tua proposta!"
         </p>
         <div class="d-flex w-100 justify-content-around mb-5">
-          <a href="https://www.linkedin.com/in/patrizio-corcione-98236a312/" target="blanck" class="btn btn-outline-light"><i class="fa-brands fa-linkedin-in"></i>Linkedin</a>
-          <a href="https://github.com/PatrizioCorcione" target="blanck" class="btn btn-outline-light"><i class="fa-brands fa-github"></i>GitHub</a>
+          <a href="https://www.linkedin.com/in/patrizio-corcione-98236a312/" target="blanck" class="btn btn-outline-light">
+            <i class="fa-brands fa-linkedin-in"></i>Linkedin
+          </a>
+          <a href="https://github.com/PatrizioCorcione" target="blanck" class="btn btn-outline-light">
+            <i class="fa-brands fa-github"></i>GitHub
+          </a>
         </div>
       </div>
       <div class="col-12 col-md-6">
+        <!-- Snackbar per notifiche -->
         <!-- Form di contatto -->
         <form @submit.prevent="sendEmail">
+          <div class="d-flex justify-content-center align-items-center">
+            
+            <Snackbar ref="snackbar" />
+          </div>
           <div class="mb-3">
             <label for="name" class="form-label">Nome</label>
             <input
-              type="text"
-              class="form-control bg-transparent text-white"
-              id="name"
-              v-model="formData.name"
-              required
+            type="text"
+            class="form-control bg-transparent text-white"
+            id="name"
+            v-model="formData.name"
+            required
               @focus="disableScroll"
               @blur="enableScroll"
             />
@@ -98,25 +107,25 @@ export default {
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input
-              type="email"
-              class="form-control bg-transparent text-white"
-              id="email"
-              v-model="formData.email"
-              required
-              @focus="disableScroll"
-              @blur="enableScroll"
+            type="email"
+            class="form-control bg-transparent text-white"
+            id="email"
+            v-model="formData.email"
+            required
+            @focus="disableScroll"
+            @blur="enableScroll"
             />
           </div>
           <div class="mb-3">
             <label for="message" class="form-label">Messaggio</label>
             <textarea
-              class="form-control bg-transparent text-white"
-              id="message"
-              v-model="formData.message"
-              rows="5"
-              required
-              @focus="disableScroll"
-              @blur="enableScroll"
+            class="form-control bg-transparent text-white"
+            id="message"
+            v-model="formData.message"
+            rows="5"
+            required
+            @focus="disableScroll"
+            @blur="enableScroll"
             ></textarea>
           </div>
           <div class="d-grid">
@@ -125,8 +134,6 @@ export default {
         </form>
       </div>
     </div>
-    <!-- Componente Snackbar per notifiche -->
-    <Snackbar ref="snackbar" />
   </div>
 </template>
 
@@ -143,6 +150,7 @@ export default {
   opacity: 0; /* Opacità iniziale */
   transform: translateX(50px); /* Traslazione iniziale */
   transition: all 0.6s ease-out; /* Transizione per animazioni */
+  
   /* Icone dei social */
   .fa-github,
   .fa-linkedin-in {
@@ -190,14 +198,13 @@ export default {
     }
   }
 }
+
 @media (max-width: 767.98px) {
-    .container{
-      transform: translateX(0px);
-    }
-    #contact{
-      padding-bottom: 135px !important;
-    }
+  .container {
+    transform: translateX(0px);
+  }
+  #contact {
+    padding-bottom: 135px !important;
+  }
 }
-
 </style>
-

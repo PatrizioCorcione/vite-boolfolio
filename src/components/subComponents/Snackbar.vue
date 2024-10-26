@@ -1,7 +1,7 @@
 <template>
-  <div v-if="visible" class="snackbar" :class="{ 'show': visible }">
+  <span v-if="visible" class="snackbar" :class="{ 'show': visible }">
     {{ message }}
-  </div>
+  </span>
 </template>
 
 <script>
@@ -26,16 +26,11 @@ export default {
 
 <style scoped>
 .snackbar {
-  position: fixed;
-  bottom: 85%;
-  left: 5%;
-  transform: translateX(-50%);
   background-color: #004cff; /* Verde */
   color: #fff;
   padding: 16px;
   border-radius: 5px;
   opacity: 0;
-  transition: opacity 0.5s;
 }
 
 .snackbar.show {
