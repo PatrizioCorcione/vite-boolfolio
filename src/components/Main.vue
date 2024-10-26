@@ -38,7 +38,7 @@ export default {
   computed: {
     isDesktop() {
       // Controlla se la larghezza della finestra è maggiore o uguale a 768px
-      return window.innerWidth >= 1000;
+      return window.innerWidth >= 1100;
     }
   },
 
