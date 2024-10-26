@@ -284,6 +284,8 @@ export default {
 @media (max-width: 700px) {
   .reset-text{
     font-size: 1rem;
+  }
+  .reset-order{
     padding: 0 !important;
   }
 }
