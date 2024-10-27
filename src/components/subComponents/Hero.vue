@@ -4,16 +4,24 @@ export default {
     return {
       showImage: false,
       showText: false,
+      isImageLoaded: false, // Nuova proprietà per controllare il caricamento dell'immagine
       fullText: "Codice non solo per risolvere problemi, ma per creare un futuro migliore. Perché il vero debugging è nel trasformare l'idea in realtà.",
       displayedText: '',
       currentIndex: 0,
     };
   },
   mounted() {
-    setTimeout(() => {
-      this.showImage = true;
-    }, 100);
+    const imgElement = this.$refs.heroImage;
 
+    // Aggiungi un evento di caricamento sull'immagine
+    imgElement.addEventListener('load', () => {
+      this.isImageLoaded = true;
+      setTimeout(() => {
+        this.showImage = true;
+      }, 100);
+    });
+
+    // Inizia l'animazione del testo
     setTimeout(() => {
       this.showText = true;
       this.typeWriter();
@@ -40,13 +48,17 @@ export default {
       <div class="row justify-content-center">
         <div 
           class="overflow-hidden col-md-4 col-12 d-flex justify-content-center"
-          :class="{ 'fade-in-image': showImage }"
+          :class="{ 'fade-in-image': showImage && isImageLoaded }"
         >
           <img 
+            ref="heroImage"
             class="img-fluid rounded-circle" 
             src="../../../public/img/IMG_0086(1).jpg" 
             alt="Hero Image"
-            :style="{ opacity: showImage ? 1 : 0, transform: showImage ? 'scale(1)' : 'scale(0.5)' }"
+            :style="{ 
+              opacity: showImage && isImageLoaded ? 1 : 0, 
+              transform: showImage && isImageLoaded ? 'scale(1)' : 'scale(0.5)' 
+            }"
           >
         </div>
         <div 
@@ -106,21 +118,19 @@ export default {
   }
 }
 @media (max-width: 767.98px) {
-  img{
+  img {
     width: 60%;
   }
-  .slogan{
+  .slogan {
     font-size: 1.5rem !important;
   }
-  #hero{
+  #hero {
     height: 650px;
   }
 }
 @media (max-width: 1100px) {
- 
-  .slogan{
+  .slogan {
     font-size: 1.5rem !important;
   }
-  
 }
 </style>
