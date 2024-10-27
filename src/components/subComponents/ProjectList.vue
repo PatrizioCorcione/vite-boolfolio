@@ -59,6 +59,11 @@ export default {
   tableObserver.observe(this.$refs.searchForm);
   filterObserver.observe(this.$refs.projectFilter);
 },
+methods: {
+    preventSubmit(event) {
+      event.preventDefault(); // Impedisce l'invio del form
+    },
+  },
 
 };
 </script>
@@ -68,12 +73,13 @@ export default {
   <div class="bg bg-primary-dark w-100 py-5">
     <div id="all-projects" class="container-custom">
       <div class="row">
-        <div class="col-10">
+        <div class="col-8">
           <h2>All My Projects</h2>
           <form 
             class="w-100"
             role="search"
             ref="searchForm"
+            @submit.prevent="preventSubmit"
             :class="{ 'zoom-in': isTableVisible }"
           >
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -105,7 +111,7 @@ export default {
             </table>
           </div>
         </div>
-        <div class="col-2" ref="projectFilter" :class="{ 'slide-in-right': isFilterVisible }">
+        <div class="col-4" ref="projectFilter" :class="{ 'slide-in-right': isFilterVisible }">
           <ProjectFilter/>
         </div>
       </div>

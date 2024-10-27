@@ -96,7 +96,7 @@ export default {
         </div>
       </div>
       <div class="row video-row text-center" v-if="videoResp.length > 0">
-        <h2 class="mb-5">Anteprima Responsive</h2>
+        <h2 class="mb-5" style="font-size: 3rem;">Anteprima Responsive</h2>
         <div class="col-6 video-container">
           <video class="video-section zoom-animation i-pad" autoplay loop muted playsinline>
             <source :src="'/videos/' + videoResp[0]" type="video/webm">
@@ -116,7 +116,7 @@ export default {
 
 <style lang="scss" scoped>
 .show {
-  min-height: 700px;
+  min-height: 100vh;
   color: #feffff;
   background: linear-gradient(
     135deg,
