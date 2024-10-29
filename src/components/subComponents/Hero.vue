@@ -119,9 +119,9 @@ export default {
     text-align: center;
   }
 }
-@media (max-width: 767.98px) {
+@media (max-width: 1000px) {
   img {
-    width: 60%;
+    width: 50%;
   }
   .slogan {
     font-size: 1.5rem !important;
