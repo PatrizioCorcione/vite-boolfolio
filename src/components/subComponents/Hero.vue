@@ -50,7 +50,7 @@ export default {
         >
           <img 
             ref="heroImage"
-            class="img-fluid rounded-circle" 
+            class="rounded-circle img-fluid" 
             src="/img/IMG_0086_1_.webp" 
             alt="Hero Image"
             :style="{ 
@@ -84,7 +84,7 @@ export default {
     padding: 20px;
   }
 
-  .img-fluid.rounded-circle {
+  .rounded-circle {
     border: 3px solid royalblue;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(65, 105, 225, 0.5);
     transition: transform 0.8s ease, opacity 0.5s ease, box-shadow 0.5s ease;
@@ -121,10 +121,7 @@ export default {
   }
 }
 @media (max-width: 767.98px) {
-  img {
-    width: 70% !important;
-    height: 170px;
-  }
+  
   
   #hero {
     height: 650px;
@@ -132,10 +129,8 @@ export default {
 }
 @media (max-width: 1100px) {
   .slogan {
-    font-size: 1.3rem !important;
+    font-size: 1.4rem !important;
   }
-  img {
-    width: 50%;
-  }
+ 
 }
 </style>
