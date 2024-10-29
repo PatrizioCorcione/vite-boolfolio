@@ -45,7 +45,7 @@ export default {
     <div class="container-custom py-5">
       <div class="row justify-content-center minh">
         <div 
-          class="overflow-hidden col-md-4 col-12 d-flex justify-content-center"
+          class="overflow-hidden col-lg-4 col-12 d-flex justify-content-center"
           :class="{ 'fade-in-image': showImage && isImageLoaded }"
         >
           <img 
@@ -60,7 +60,7 @@ export default {
           >
         </div>
         <div 
-          class="col-md-8 col-12 d-flex align-items-center"
+          class="col-lg-8 col-12 d-flex align-items-center"
           :class="{ 'fade-in-text': showText }"
         >
           <p class="slogan">
