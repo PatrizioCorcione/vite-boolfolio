@@ -50,7 +50,6 @@ export default {
       const serviceID = 'service_qqcxz4h';
       const templateID = 'template_lsoa77k';
       const userID = 'Xj_7-p3WvdRVyFW3F';
-      console.log('Invio email con i seguenti dati:', this.formData);
 
       emailjs.send(serviceID, templateID, this.formData, userID)
         .then(() => {
