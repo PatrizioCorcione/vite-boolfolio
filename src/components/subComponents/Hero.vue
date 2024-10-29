@@ -124,7 +124,7 @@ export default {
   
   
   #hero {
-    height: 650px;
+    min-height: 650px;
   }
 }
 @media (max-width: 1100px) {
