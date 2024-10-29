@@ -19,7 +19,6 @@ export default {
     // Computed property per filtrare i progetti in base a searchQuery
     filteredProjects() {
       // Filtra i progetti in base alla searchQuery
-      console.log(this.store.searchQuery);
       
       return this.store.filteredProjects.filter(project => {
         return project.title.toLowerCase().includes(this.store.searchQuery.toLowerCase());

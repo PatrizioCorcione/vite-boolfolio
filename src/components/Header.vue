@@ -35,7 +35,7 @@
             <a href="#beast-projects" class="text-decoration-none" data-replace="Progetti top"><span>Progetti top</span></a>
           </li>
           <li class="logo-link">
-            <img src="../../public/img/animal-2028258_640.png" alt="Logo">
+            <img src="/img/animal-2028258_640.png" alt="Logo">
           </li>
           <li class="navbar__item">
             <a href="#all-projects" class="text-decoration-none" data-replace="Progetti"><span>Progetti</span></a>
@@ -57,7 +57,7 @@
             </a>
           </li>
           <li class="navbar__item logo-link">
-            <img src="../../public/img/animal-2028258_640.png" alt="Logo">
+            <img src="/img/animal-2028258_640.png" alt="Logo">
           </li>
         </ul>
       </div>

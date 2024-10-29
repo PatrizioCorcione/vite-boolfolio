@@ -31,16 +31,16 @@ export default {
     <div class="text-center">
       <h2 class="mb-5">Tecnologie usate</h2>
       <div class="technology-icons">
-        <img src="../../../public/icons/html.png" alt="HTML" class="icon" />
-        <img src="../../../public/icons/css.png" alt="CSS" class="icon" />
-        <img src="../../../public/icons/js.png" alt="Javascript" class="icon" />
-        <img src="../../../public/icons/boot.png" alt="Bootstrap" class="icon" />
-        <img src="../../../public/icons/vue.png" alt="Vue" class="icon" />
-        <img src="../../../public/icons/tailwind.png" alt="Tailwind" class="icon" />
-        <img src="../../../public/icons/mysql.png" alt="MySQL" class="icon" />
-        <img src="../../../public/icons/react.png" alt="React" class="icon" />
-        <img src="../../../public/icons/laravel.png" alt="Laravel" class="icon" />
-        <img src="../../../public/icons/php.png" alt="PHP" class="icon" />
+        <img src="/icons/html.png" alt="HTML" class="icon" />
+        <img src="/icons/css.png" alt="CSS" class="icon" />
+        <img src="/icons/js.png" alt="Javascript" class="icon" />
+        <img src="/icons/boot.png" alt="Bootstrap" class="icon" />
+        <img src="/icons/vue.png" alt="Vue" class="icon" />
+        <img src="/icons/tailwind.png" alt="Tailwind" class="icon" />
+        <img src="/icons/mysql.png" alt="MySQL" class="icon" />
+        <img src="/icons/react.png" alt="React" class="icon" />
+        <img src="/icons/laravel.png" alt="Laravel" class="icon" />
+        <img src="/icons/php.png" alt="PHP" class="icon" />
       </div>
     </div>
   </div>

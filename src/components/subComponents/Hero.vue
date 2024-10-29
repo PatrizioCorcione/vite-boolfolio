@@ -18,14 +18,12 @@ export default {
       this.isImageLoaded = true;
       setTimeout(() => {
         this.showImage = true;
+
+        // Inizia l'animazione del testo solo dopo che l'immagine è caricata
+        this.showText = true;
       }, 100);
     });
-
-    // Inizia l'animazione del testo
-    setTimeout(() => {
-      this.showText = true;
-      this.typeWriter();
-    }, 500);
+    this.typeWriter();
   },
   methods: {
     typeWriter() {
@@ -45,7 +43,7 @@ export default {
 <template>
   <div class="bg" id="hero">
     <div class="container-custom py-5">
-      <div class="row justify-content-center">
+      <div class="row justify-content-center minh">
         <div 
           class="overflow-hidden col-md-4 col-12 d-flex justify-content-center"
           :class="{ 'fade-in-image': showImage && isImageLoaded }"
@@ -53,7 +51,7 @@ export default {
           <img 
             ref="heroImage"
             class="img-fluid rounded-circle" 
-            src="../../../public/img/IMG_0086(1).jpg" 
+            src="/img/IMG_0086_1_.webp" 
             alt="Hero Image"
             :style="{ 
               opacity: showImage && isImageLoaded ? 1 : 0, 
@@ -76,7 +74,11 @@ export default {
 
 <style lang="scss" scoped>
 .bg {
+  .minh{
+    min-height: 455px;
+  }
   padding: 2rem;
+  min-height: 600px;
 
   .overflow-hidden {
     padding: 20px;
