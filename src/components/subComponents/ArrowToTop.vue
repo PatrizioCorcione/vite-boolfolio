@@ -55,6 +55,9 @@ export default {
   border: 2px solid white;
   position: relative;
 }
+.mouse_scroll:hover .mouse {
+  background-color: royalblue; /* Cambia il colore del bordo al passaggio del mouse */
+}
 
 .wheel {
   height: 4px;
