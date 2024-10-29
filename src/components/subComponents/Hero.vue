@@ -60,7 +60,7 @@ export default {
           >
         </div>
         <div 
-          class="col-lg-8 col-12 d-flex align-items-center"
+          class="col-lg-8 col-12 d-flex align-items-center text-container"
           :class="{ 'fade-in-text': showText }"
         >
           <p class="slogan">
@@ -74,7 +74,7 @@ export default {
 
 <style lang="scss" scoped>
 .bg {
-  .minh{
+  .minh {
     min-height: 455px;
   }
   padding: 2rem;
@@ -98,10 +98,11 @@ export default {
     opacity: 1;
   }
 
-  .col-8 {
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    opacity: 0;
-    transform: translateX(-20px);
+  .text-container {
+    min-height: 200px; // Altezza minima per evitare il cambiamento di layout
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .fade-in-text {
@@ -122,17 +123,16 @@ export default {
 @media (max-width: 767.98px) {
   img {
     width: 70% !important;
+    height: 170px;
   }
-  .slogan {
-    font-size: 1.5rem !important;
-  }
+  
   #hero {
     height: 650px;
   }
 }
 @media (max-width: 1100px) {
   .slogan {
-    font-size: 1.5rem !important;
+    font-size: 1.3rem !important;
   }
   img {
     width: 50%;
