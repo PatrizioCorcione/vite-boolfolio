@@ -42,10 +42,10 @@ export default {
 
 <template>
   <div class="bg" id="hero">
-    <div class="container-custom py-5">
+    <div class="container-custom py-3">
       <div class="row justify-content-center minh">
         <div 
-          class="overflow-hidden col-lg-4 col-12 d-flex justify-content-center"
+          class="overflow-hidden col-xl-4 col-lg-5 col-12 d-flex justify-content-center"
           :class="{ 'fade-in-image': showImage && isImageLoaded }"
         >
           <img 
@@ -60,7 +60,7 @@ export default {
           >
         </div>
         <div 
-          class="col-lg-8 col-12 d-flex align-items-center text-container"
+          class="co-xl-8 col-lg-7 col-12 d-flex align-items-center text-container"
           :class="{ 'fade-in-text': showText }"
         >
           <p class="slogan">
@@ -75,10 +75,9 @@ export default {
 <style lang="scss" scoped>
 .bg {
   .minh {
-    min-height: 455px;
+    // min-height: 455px;
   }
-  padding: 2rem;
-  min-height: 600px;
+  padding: 0rem 2rem;
 
   .overflow-hidden {
     padding: 20px;
@@ -99,10 +98,11 @@ export default {
   }
 
   .text-container {
-    min-height: 200px; // Altezza minima per evitare il cambiamento di layout
+    // min-height: 200px; // Altezza minima per evitare il cambiamento di layout
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 350px;
   }
 
   .fade-in-text {
@@ -121,16 +121,13 @@ export default {
   }
 }
 @media (max-width: 767.98px) {
-  
-  
   #hero {
-    min-height: 650px;
+    // min-height: 610px;
   }
 }
 @media (max-width: 1100px) {
   .slogan {
     font-size: 1.4rem !important;
   }
- 
 }
 </style>
