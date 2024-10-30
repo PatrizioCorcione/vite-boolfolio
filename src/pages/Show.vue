@@ -273,18 +273,19 @@ export default {
     opacity: 1; /* End fully visible */
   }
 }
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
+  .reset-text{
+    font-size: 1rem;
+  }
+}
+@media (max-width: 700px) {
   .reset-order {
     order: 0 !important; // Reset the order to the default flow
   }
   .reset-text{
     text-align: left !important;
   }
-}
-@media (max-width: 700px) {
-  .reset-text{
-    font-size: 1rem;
-  }
+  
   .reset-order{
     padding: 0 !important;
   }

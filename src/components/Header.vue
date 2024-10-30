@@ -32,7 +32,7 @@
             <a href="#about" class="text-decoration-none" data-replace="Su di me"><span>Su di me</span></a>
           </li>
           <li class="navbar__item">
-            <a href="#beast-projects" class="text-decoration-none" data-replace="Progetti top"><span>Progetti top</span></a>
+            <a href="#beast-projects" class="text-decoration-none" data-replace="Progetti top"><span>Vetrina</span></a>
           </li>
           <li class="logo-link">
             <img src="/img/animal-2028258_640.png" alt="Logo">

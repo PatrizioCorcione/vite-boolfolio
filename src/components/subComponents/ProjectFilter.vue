@@ -50,7 +50,7 @@ export default {
   <div class="filter">
     <div class="reset-div" @click="resetFilters">
       <p class="text-complementare reset m-0">RESET</p>
-      <h2 class="me-2 filter-text">FILTER</h2>
+      <h2 class="me-2 filter-text">FILTRI</h2>
     </div>
     <p class="text-tt font-weight-bold text-complementare">Tipi</p>
     <div class="form-check type-check">
