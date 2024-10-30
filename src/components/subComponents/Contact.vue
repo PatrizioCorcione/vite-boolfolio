@@ -72,7 +72,7 @@ export default {
       <div class="col-12 col-lg-6 d-flex flex-column align-items-center">
         <!-- Sezione informativa e link ai social -->
         <p class="pb-5 px-5 text-center">
-          "Se sei interessato a collaborare o a discutere di progetti di programmazione, non esitare a contattarmi: sarei felice di esplorare nuove opportunità insieme! Accanto troverai un modo per inviarmi un’email e cercherò di rispondere con prontezza. Sono sempre aperto a nuove idee e possibilità, quindi non vedo l'ora di sentire la tua proposta!"
+          "Se sei interessato a collaborare o a discutere di progetti di programmazione, non esitare a contattarmi: sarei felice di esplorare nuove opportunità insieme! In parte troverai un modo per inviarmi un’email e cercherò di rispondere con prontezza. Sono sempre aperto a nuove idee e possibilità, quindi non vedo l'ora di sentire la tua proposta!"
         </p>
         <div class="d-flex w-100 justify-content-around mb-5">
           <a href="https://www.linkedin.com/in/patrizio-corcione-98236a312/" target="blanck" class="btn btn-outline-light">
