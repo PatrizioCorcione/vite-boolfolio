@@ -68,7 +68,7 @@ export default {
 <template>
   <div class="container py-5" id="contact" ref="contactForm" :class="{ 'animate-fade-in': isVisible }">
     <div class="row justify-content-center">
-      <h2 class="text-center py-3">Contattami</h2>
+      <h2 class="text-center py-3">CONTATTAMI</h2>
       <div class="col-12 col-lg-6 d-flex flex-column align-items-center">
         <!-- Sezione informativa e link ai social -->
         <p class="pb-5 px-5 text-center">

@@ -2,7 +2,7 @@
   <div class="container-custom" id="about">
     <div>
       <div :class="{ 'fade-in': true, 'show': showText }">
-        <h2 class="about-title">Su di me</h2>
+        <h2 class="about-title">SU DI ME</h2>
         <p class="about-text">
           Benvenuto nel mio portfolio! Mi chiamo Patrizio Corcione e sono un Junior Full Stack Web Developer!
         </p>
