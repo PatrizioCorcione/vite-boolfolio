@@ -73,7 +73,7 @@ methods: {
     <div id="all-projects" class="container-custom">
       <div class="row">
         <div class="col-10">
-          <h2>PROGETTI</h2>
+          <h2>Progetti</h2>
           <form 
             class="w-100"
             role="search"
