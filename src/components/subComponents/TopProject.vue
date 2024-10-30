@@ -176,7 +176,7 @@ export default {
      /* No transition on mobile for the card body */
   }
   .icon{
-    width: 15px;
+    width: 20px !important;
   }
 }
 </style>
